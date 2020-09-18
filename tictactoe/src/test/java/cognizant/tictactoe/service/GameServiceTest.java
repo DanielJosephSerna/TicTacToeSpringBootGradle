@@ -36,7 +36,7 @@ class GameServiceTest {
         playerList.add(player1);
         playerList.add(player2);
 
-        char [] boardArr = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
+        char [] boardArr = {' ', '|', ' ', '|', ' ', '-', '+', '-', '+', '-', ' ', '|', ' ', '|', ' ', '-', '+', '-', '+', '-', ' ', '|', ' ', '|', ' ',};
         int moveCount = 0;
         Board board = new Board();
         board.setBoardArr(boardArr);
@@ -47,8 +47,6 @@ class GameServiceTest {
         Game game = new Game(playerList, board, stateOfPlay, typeOfGame);
 
         // implement the test
-        // final Game result = gameServiceUnderTest.buildGameHumanComputer();
-
         // verify the results
         Assertions.assertEquals(game, gameServiceUnderTest.buildGameHumanComputer());
     }

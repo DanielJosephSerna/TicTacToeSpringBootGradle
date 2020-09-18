@@ -24,7 +24,7 @@ public class GameService implements GameServiceInterface {
         playerList.add(player1);
         playerList.add(player2);
 
-        char [] boardArr = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
+        char [] boardArr = {' ', '|', ' ', '|', ' ', '-', '+', '-', '+', '-', ' ', '|', ' ', '|', ' ', '-', '+', '-', '+', '-', ' ', '|', ' ', '|', ' ',};
         int moveCount = 0;
         Board board = new Board();
         board.setBoardArr(boardArr);
