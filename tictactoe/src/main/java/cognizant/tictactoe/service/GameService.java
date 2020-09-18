@@ -17,9 +17,13 @@ public class GameService implements GameServiceInterface {
         Player player1 = new Player();
         player1.setType(PlayerConst.HUMAN);
         player1.setPiece(PlayerConst.X);
+        player1.setxMove(PlayerConst.ZERO);
+        player1.setyMove(PlayerConst.ZERO);
         Player player2 = new Player();
         player2.setType(PlayerConst.COMPUTER);
         player2.setPiece(PlayerConst.O);
+        player2.setxMove(PlayerConst.ZERO);
+        player2.setyMove(PlayerConst.ZERO);
         List<Player> playerList = new ArrayList<>();
         playerList.add(player1);
         playerList.add(player2);
