@@ -3,7 +3,6 @@ package cognizant.tictactoe.model;
 import lombok.*;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
@@ -11,9 +10,16 @@ import lombok.*;
 public class Player {
 
     private String type;
-    private char piece;
+    private String piece;
     private int xMove;
     private int yMove;
+
+    public Player(String type, String piece, int xMove, int yMove) {
+        this.type = type;
+        this.piece = piece;
+        this.xMove = xMove;
+        this.yMove = yMove;
+    }
 
     public int getxMove() {
         return xMove;
@@ -39,11 +45,11 @@ public class Player {
         this.type = type;
     }
 
-    public char getPiece() {
+    public String getPiece() {
         return piece;
     }
 
-    public void setPiece(char piece) {
+    public void setPiece(String piece) {
         this.piece = piece;
     }
 }

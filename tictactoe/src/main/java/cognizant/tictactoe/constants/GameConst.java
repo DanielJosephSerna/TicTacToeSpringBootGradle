@@ -10,4 +10,7 @@ public class GameConst {
     // type of game
     public static final String HUMAN_VS_HUMAN = "HUMAN VS HUMAN";
     public static final String HUMAN_VS_COMPUTER = "HUMAN VS COMPUTER";
+
+    // empty string
+    public static final String EMPTY = " ";
 }

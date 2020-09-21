@@ -4,39 +4,55 @@ import cognizant.tictactoe.constants.GameConst;
 import cognizant.tictactoe.constants.PlayerConst;
 import cognizant.tictactoe.model.Board;
 import cognizant.tictactoe.model.Game;
+import cognizant.tictactoe.model.LastPlayer;
 import cognizant.tictactoe.model.Player;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 @Service
 public class GameService implements GameServiceInterface {
 
-    public Game buildGameHumanComputer() {
-        Player player1 = new Player();
-        player1.setType(PlayerConst.HUMAN);
-        player1.setPiece(PlayerConst.X);
-        player1.setxMove(PlayerConst.ZERO);
-        player1.setyMove(PlayerConst.ZERO);
-        Player player2 = new Player();
-        player2.setType(PlayerConst.COMPUTER);
-        player2.setPiece(PlayerConst.O);
-        player2.setxMove(PlayerConst.ZERO);
-        player2.setyMove(PlayerConst.ZERO);
-        List<Player> playerList = new ArrayList<>();
-        playerList.add(player1);
-        playerList.add(player2);
+    public Game setUpPlayers(Game game) {
+        Player player1 = new Player(PlayerConst.HUMAN1, PlayerConst.X, PlayerConst.ZERO, PlayerConst.ZERO);
 
-        char [] boardArr = {' ', '|', ' ', '|', ' ', '-', '+', '-', '+', '-', ' ', '|', ' ', '|', ' ', '-', '+', '-', '+', '-', ' ', '|', ' ', '|', ' ',};
-        int moveCount = 0;
+        Player player2 = new Player(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
+
+        LastPlayer lastPlayer = new LastPlayer(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.HUMAN_COMPUTER);
+
+        game.setPlayerList(Arrays.asList(player1, player2));
+        game.setLastPlayer(lastPlayer);
+
+        return game;
+    }
+
+    public Game setUpBoard(Game game) {
+        String [][] boardArr = {{" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "}};
+        boolean isWin = false;
         Board board = new Board();
         board.setBoardArr(boardArr);
-        board.setMoveCount(moveCount);
+        board.setWin(isWin);
 
+        game.setBoard(board);
+
+        return game;
+    }
+
+    public Game setUpGame(Game game) {
         String stateOfPlay = GameConst.ONGOING;
         String typeOfGame = GameConst.HUMAN_VS_COMPUTER;
+        String winnerPlayer = " ";
+        String winnerPiece = " ";
 
-        return new Game(playerList, board, stateOfPlay, typeOfGame);
+        game.setStateOfPlay(stateOfPlay);
+        game.setTypeOfGame(typeOfGame);
+        game.setWinnerPlayer(winnerPlayer);
+        game.setWinnerPiece(winnerPiece);
+
+        return game;
     }
 }

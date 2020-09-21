@@ -3,29 +3,31 @@ package cognizant.tictactoe.model;
 import lombok.*;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Setter
 @Getter
 @ToString
 public class Board {
 
-    private char [] boardArr;
-    private int moveCount;
+    private String [][] boardArr;
+    private boolean isWin;
 
-    public char[] getBoardArr() {
+    public Board() {
+    }
+
+    public Board(String[][] boardArr, boolean isWin) {
+        this.boardArr = boardArr;
+        this.isWin = isWin;
+    }
+
+    public boolean isWin() { return isWin; }
+
+    public void setWin(boolean win) { isWin = win; }
+
+    public String[][] getBoardArr() {
         return boardArr;
     }
 
-    public void setBoardArr(char[] boardArr) {
+    public void setBoardArr(String[][] boardArr) {
         this.boardArr = boardArr;
-    }
-
-    public int getMoveCount() {
-        return moveCount;
-    }
-
-    public void setMoveCount(int moveCount) {
-        this.moveCount = moveCount;
     }
 }

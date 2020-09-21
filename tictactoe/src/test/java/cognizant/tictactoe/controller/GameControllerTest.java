@@ -1,9 +1,9 @@
 package cognizant.tictactoe.controller;
 
-import cognizant.tictactoe.constants.GameConst;
 import cognizant.tictactoe.constants.PlayerConst;
 import cognizant.tictactoe.model.Board;
 import cognizant.tictactoe.model.Game;
+import cognizant.tictactoe.model.LastPlayer;
 import cognizant.tictactoe.model.Player;
 import cognizant.tictactoe.service.GameService;
 import org.junit.jupiter.api.Assertions;
@@ -13,9 +13,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.http.ResponseEntity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -27,44 +27,38 @@ class GameControllerTest {
     @InjectMocks
     private GameController gameControllerUnderTest;
 
+
     @BeforeEach
     void setUp() {
         initMocks(this);
     }
 
     @Test
-    void whenGameIsAgainstComputer_AndHumanStarts() {
-        // setup - players, board, then game
-        Player player1 = new Player();
-        player1.setType(PlayerConst.HUMAN);
-        player1.setPiece(PlayerConst.X);
-        player1.setxMove(PlayerConst.ZERO);
-        player1.setyMove(PlayerConst.ZERO);
-        Player player2 = new Player();
-        player2.setType(PlayerConst.COMPUTER);
-        player2.setPiece(PlayerConst.O);
-        player2.setxMove(PlayerConst.ZERO);
-        player2.setyMove(PlayerConst.ZERO);
-        List<Player> playerList = new ArrayList<>();
-        playerList.add(player1);
-        playerList.add(player2);
+    void whenGameIsAgainstComputer() {
+        // setup
 
-        char [] boardArr = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
-        int moveCount = 0;
-        Board board = new Board();
-        board.setBoardArr(boardArr);
-        board.setMoveCount(moveCount);
+        final Player player1 = new Player(PlayerConst.HUMAN1, PlayerConst.X, PlayerConst.ZERO, PlayerConst.ZERO);
 
-        String stateOfPlay = GameConst.ONGOING;
-        String typeOfGame = GameConst.HUMAN_VS_COMPUTER;
-        Game game = new Game(playerList, board, stateOfPlay, typeOfGame);
+        final Player player2 = new Player(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
 
-        when(mockGameService.buildGameHumanComputer()).thenReturn(game);
+        LastPlayer lastPlayer = new LastPlayer(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.HUMAN_COMPUTER);
+
+        Board board = new Board(new String[][]{{" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "}}, false);
+
+        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, "stateOfPlay", "typeOfGame", "winnerPlayer", " ");
+
+        when(mockGameService.setUpPlayers(any(Game.class))).thenReturn(expected);
+        when(mockGameService.setUpBoard(any(Game.class))).thenReturn(expected);
+        when(mockGameService.setUpGame(any(Game.class))).thenReturn(expected);
 
         // implement the test
-        ResponseEntity<Game> gameResponseEntity = gameControllerUnderTest.buildGame();
+        final ResponseEntity<Game> result = gameControllerUnderTest.buildGame();
 
         // verify the results
-        Assertions.assertEquals(game, gameResponseEntity.getBody());
+        Assertions.assertEquals(result.getBody().getPlayerList(), expected.getPlayerList());
     }
 }
