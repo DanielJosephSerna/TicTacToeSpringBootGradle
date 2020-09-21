@@ -18,7 +18,7 @@ public class GameService implements GameServiceInterface {
 
         Player player2 = new Player(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
 
-        LastPlayer lastPlayer = new LastPlayer(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.HUMAN_COMPUTER);
+        LastPlayer lastPlayer = new LastPlayer(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.SECOND_PLAYER);
 
         game.setPlayerList(Arrays.asList(player1, player2));
         game.setLastPlayer(lastPlayer);

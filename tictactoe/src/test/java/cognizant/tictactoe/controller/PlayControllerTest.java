@@ -51,10 +51,10 @@ class PlayControllerTest {
 
         final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, "stateOfPlay", "typeOfGame", "winnerPlayer", " ");
 
-        when(mockPlayService.makeHumanVsComputerMove(any(Game.class))).thenReturn(new Game());
+        when(mockPlayService.makeHumanMove(any(Game.class))).thenReturn(new Game());
 
         // Run the test
-        final ResponseEntity<Game> result = playControllerUnderTest.playMove(expected);
+        final ResponseEntity<Game> result = playControllerUnderTest.playHumanMove(expected);
 
         // Verify the results
         Assertions.assertEquals(HttpStatus.OK, result.getStatusCode());
