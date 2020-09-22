@@ -9,19 +9,13 @@ import lombok.*;
 public class Board {
 
     private String [][] boardArr;
-    private boolean isWin;
 
     public Board() {
     }
 
-    public Board(String[][] boardArr, boolean isWin) {
+    public Board(String[][] boardArr) {
         this.boardArr = boardArr;
-        this.isWin = isWin;
     }
-
-    public boolean isWin() { return isWin; }
-
-    public void setWin(boolean win) { isWin = win; }
 
     public String[][] getBoardArr() {
         return boardArr;

@@ -19,7 +19,44 @@ public class PlayController {
     @Autowired
     private PlayService playService;
 
-    @PostMapping("/move")
+/*    @PostMapping("/human-move")
+    public ResponseEntity<Game> playHuman(@RequestBody Game game) {
+        if(game.getPlayerList().get(0).getType().equals(PlayerConst.HUMAN1)
+        && game.getPlayerList().get(1).getType().equals(PlayerConst.HUMAN2)) {
+
+        } else if(game.getPlayerList().get(0).getType().equals(PlayerConst.HUMAN2)
+        && game.getPlayerList().get(1).getType().equals(PlayerConst.HUMAN1)) {
+
+        }
+        return new ResponseEntity<>(game, HttpStatus.OK);
+    }*/
+
+    @PostMapping("/human-computer")
+    public ResponseEntity<Game> playHumanAndComputerMoves(Game game) {
+        Game tempGame = playService.performHumanBeforeComputerMove(game);
+        if(tempGame.getStateOfPlay().equals(GameConst.OVER)) {
+            return new ResponseEntity<>(tempGame, HttpStatus.OK);
+        }
+
+        tempGame = playService.performComputerAfterHumanMove(game);
+
+        return new ResponseEntity<>(tempGame, HttpStatus.OK);
+    }
+
+    @PostMapping("/computer-move")
+    public ResponseEntity<Game> playComputer(@RequestBody Game game) {
+        if(game.getPlayerList().get(0).equals(PlayerConst.HUMAN1)
+        && game.getPlayerList().get(1).equals(PlayerConst.COMPUTER)) {
+            Game tempGame = playService.performHumanBeforeComputerMove(game);
+        } else if(game.getPlayerList().get(0).equals(PlayerConst.COMPUTER)
+        && game.getPlayerList().get(1).equals(PlayerConst.HUMAN1)) {
+
+        }
+
+        return new ResponseEntity<>(game, HttpStatus.OK);
+    }
+
+/*    @PostMapping("/move")
     public ResponseEntity<Game> playHumanMove(@RequestBody Game game) {
 
         // When human1 is first in the game and opponent computer
@@ -91,14 +128,14 @@ public class PlayController {
             return new ResponseEntity<>(afterMove, HttpStatus.OK);
 
             // When human1 is first in the game and opponent human2
-        } /*else if(game.getPlayerList().get(PlayerConst.ZERO).getType().equals(PlayerConst.HUMAN1)
+        } *//*else if(game.getPlayerList().get(PlayerConst.ZERO).getType().equals(PlayerConst.HUMAN1)
                 && game.getPlayerList().get(PlayerConst.ONE).getType().equals(PlayerConst.HUMAN2)) {
 
             // When human2 is first in the game and opponent human1
         } else if(game.getPlayerList().get(PlayerConst.ZERO).getType().equals(PlayerConst.HUMAN2)
                 && game.getPlayerList().get(PlayerConst.ONE).getType().equals(PlayerConst.COMPUTER)) {
 
-        }*/
+        }*//*
         return new ResponseEntity<>(game, HttpStatus.OK);
-    }
+    }*/
 }

@@ -7,7 +7,17 @@ public interface PlayServiceInterface {
 
     public Game makeComputerMove(Game game);
 
-    public Game checkWin(Game game);
+    public Game setBoard(Game game);
 
-    public Game checkTie(Game game);
+    public Game switchLastPlayer(Game game);
+
+    public boolean checkHorizontalWin(Game game);
+
+    public boolean checkVerticalWin(Game game);
+
+    public boolean checkDiagonalWin(Game game);
+
+    public boolean checkTie(Game game);
+
+    public Game performHumanBeforeComputerMove(Game game);
 }

@@ -10,12 +10,10 @@ import lombok.*;
 public class LastPlayer {
     private String lastPlayer;
     private String lastPiece;
-    private int key;
 
-    public LastPlayer(String lastPlayer, String lastPiece, int key) {
+    public LastPlayer(String lastPlayer, String lastPiece) {
         this.lastPlayer = lastPlayer;
         this.lastPiece = lastPiece;
-        this.key = key;
     }
 
     public String getLastPlayer() {
@@ -32,13 +30,5 @@ public class LastPlayer {
 
     public void setLastPiece(String lastPiece) {
         this.lastPiece = lastPiece;
-    }
-
-    public int getKey() {
-        return key;
-    }
-
-    public void setKey(int key) {
-        this.key = key;
     }
 }

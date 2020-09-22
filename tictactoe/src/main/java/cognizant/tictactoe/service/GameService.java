@@ -13,12 +13,25 @@ import java.util.Arrays;
 @Service
 public class GameService implements GameServiceInterface {
 
-    public Game setUpPlayers(Game game) {
+    public Game setUpPlayersHumanComputer(Game game) {
         Player player1 = new Player(PlayerConst.HUMAN1, PlayerConst.X, PlayerConst.ZERO, PlayerConst.ZERO);
 
         Player player2 = new Player(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
 
-        LastPlayer lastPlayer = new LastPlayer(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.SECOND_PLAYER);
+        LastPlayer lastPlayer = new LastPlayer(PlayerConst.COMPUTER, PlayerConst.O);
+
+        game.setPlayerList(Arrays.asList(player1, player2));
+        game.setLastPlayer(lastPlayer);
+
+        return game;
+    }
+
+    public Game setUpPlayersComputerHuman(Game game) {
+        Player player1 = new Player(PlayerConst.COMPUTER, PlayerConst.X, PlayerConst.ZERO, PlayerConst.ZERO);
+
+        Player player2 = new Player(PlayerConst.HUMAN1, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
+
+        LastPlayer lastPlayer = new LastPlayer(PlayerConst.COMPUTER, PlayerConst.O);
 
         game.setPlayerList(Arrays.asList(player1, player2));
         game.setLastPlayer(lastPlayer);
@@ -32,10 +45,9 @@ public class GameService implements GameServiceInterface {
                 {" ", "|", " ", "|", " "},
                 {"-", "+", "-", "+", "-"},
                 {" ", "|", " ", "|", " "}};
-        boolean isWin = false;
         Board board = new Board();
         board.setBoardArr(boardArr);
-        board.setWin(isWin);
+
 
         game.setBoard(board);
 

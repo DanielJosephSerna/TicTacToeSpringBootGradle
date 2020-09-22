@@ -6,10 +6,6 @@ public final class PlayerConst {
     public static final String HUMAN2 = "HUMAN2";
     public static final String COMPUTER = "COMPUTER";
 
-    // set a key
-    public static final int HUMAN_COMPUTER = 1;
-    public static final int HUMAN_HUMAN = 2;
-
     // intialize move x & y
     public static final int ZERO = 0;
     public static final int ONE = 1;

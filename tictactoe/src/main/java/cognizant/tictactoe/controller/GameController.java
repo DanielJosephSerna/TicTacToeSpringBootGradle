@@ -17,21 +17,30 @@ public class GameController {
     private GameService gameService;
 
     @GetMapping(value="/human-computer", produces="application/json")
-    public ResponseEntity<Game> buildGame() {
+    public ResponseEntity<Game> buildHumanComputerGame() {
         // set up players
         Game game = new Game();
-        game = gameService.setUpPlayers(game);
+
+        game = gameService.setUpPlayersHumanComputer(game);
 
         // set up board
         game = gameService.setUpBoard(game);
-/*        String testBord [][] = game.getBoard().getBoardArr();
-        System.out.println(testBord);
-        System.out.println(testBord[4][0]+""+testBord[4][1]+""+testBord[4][2]+""+testBord[4][3]+""+testBord[4][4]);
-        System.out.println(testBord[3][0]+""+testBord[3][1]+""+testBord[3][2]+""+testBord[3][3]+""+testBord[3][4]);
-        System.out.println(testBord[2][0]+""+testBord[2][1]+""+testBord[2][2]+""+testBord[2][3]+""+testBord[2][4]);
-        System.out.println(testBord[1][0]+""+testBord[1][1]+""+testBord[1][2]+""+testBord[1][3]+""+testBord[1][4]);
-        System.out.println(testBord[0][0]+""+testBord[0][1]+""+testBord[0][2]+""+testBord[0][3]+""+testBord[0][4]);*/
 
+        // set up
+        game = gameService.setUpGame(game);
+
+        return new ResponseEntity<>(game, HttpStatus.OK);
+    }
+
+    @GetMapping(value="/computer-human", produces="application/json")
+    public ResponseEntity<Game> buildComputerHumanGame() {
+        // set up players
+        Game game = new Game();
+
+        game = gameService.setUpPlayersComputerHuman(game);
+
+        // set up board
+        game = gameService.setUpBoard(game);
 
         // set up
         game = gameService.setUpGame(game);

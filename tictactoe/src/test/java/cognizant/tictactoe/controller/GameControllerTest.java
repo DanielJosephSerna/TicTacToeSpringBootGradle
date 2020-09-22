@@ -41,22 +41,22 @@ class GameControllerTest {
 
         final Player player2 = new Player(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
 
-        LastPlayer lastPlayer = new LastPlayer(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.HUMAN_COMPUTER);
+        LastPlayer lastPlayer = new LastPlayer(PlayerConst.COMPUTER, PlayerConst.O);
 
         Board board = new Board(new String[][]{{" ", "|", " ", "|", " "},
                 {"-", "+", "-", "+", "-"},
                 {" ", "|", " ", "|", " "},
                 {"-", "+", "-", "+", "-"},
-                {" ", "|", " ", "|", " "}}, false);
+                {" ", "|", " ", "|", " "}});
 
         final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, "stateOfPlay", "typeOfGame", "winnerPlayer", " ");
 
-        when(mockGameService.setUpPlayers(any(Game.class))).thenReturn(expected);
+        when(mockGameService.setUpPlayersHumanComputer(any(Game.class))).thenReturn(expected);
         when(mockGameService.setUpBoard(any(Game.class))).thenReturn(expected);
         when(mockGameService.setUpGame(any(Game.class))).thenReturn(expected);
 
         // implement the test
-        final ResponseEntity<Game> result = gameControllerUnderTest.buildGame();
+        final ResponseEntity<Game> result = gameControllerUnderTest.buildHumanComputerGame();
 
         // verify the results
         Assertions.assertEquals(result.getBody().getPlayerList(), expected.getPlayerList());

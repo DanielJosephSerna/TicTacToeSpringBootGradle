@@ -20,7 +20,7 @@ class GameServiceTest {
         final Game expected = new Game();
 
         // Run the test
-        final Game result = gameServiceUnderTest.setUpPlayers(expected);
+        final Game result = gameServiceUnderTest.setUpPlayersHumanComputer(expected);
 
         // Verify the results
         Assertions.assertEquals(expected, result);

@@ -4,7 +4,9 @@ import cognizant.tictactoe.model.Game;
 
 public interface GameServiceInterface {
 
-    public Game setUpPlayers(Game game);
+    public Game setUpPlayersHumanComputer(Game game);
+
+    public Game setUpPlayersComputerHuman(Game game);
 
     public Game setUpBoard(Game game);
 
