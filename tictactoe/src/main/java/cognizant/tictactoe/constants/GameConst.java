@@ -1,6 +1,7 @@
 package cognizant.tictactoe.constants;
 
 public class GameConst {
+    private GameConst() {}
     // state of the game: tie, winner, loser, ongoing
     public static final String TIE = "TIE";
     public static final String ONGOING = "ONGOING";

@@ -1,6 +1,7 @@
 package cognizant.tictactoe.constants;
 
 public final class PlayerConst {
+    PlayerConst() {}
     // type of player
     public static final String HUMAN1 = "HUMAN1";
     public static final String HUMAN2 = "HUMAN2";
