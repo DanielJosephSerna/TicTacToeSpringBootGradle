@@ -13,58 +13,51 @@ import java.util.Arrays;
 @Service
 public class GameService implements GameServiceInterface {
 
-    public Game setUpPlayersHumanComputer(Game game) {
+    public Game setUpHumanComputerGame() {
         Player player1 = new Player(PlayerConst.HUMAN1, PlayerConst.X, PlayerConst.ZERO, PlayerConst.ZERO);
 
         Player player2 = new Player(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
 
         LastPlayer lastPlayer = new LastPlayer(PlayerConst.COMPUTER, PlayerConst.O);
 
-        game.setPlayerList(Arrays.asList(player1, player2));
-        game.setLastPlayer(lastPlayer);
+        Board board = new Board(new String[][]{{" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "}});
 
-        return game;
+        return new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.HUMAN_VS_COMPUTER, GameConst.EMPTY, GameConst.EMPTY);
     }
 
-    public Game setUpPlayersComputerHuman(Game game) {
+    public Game setUpComputerHumanGame() {
         Player player1 = new Player(PlayerConst.COMPUTER, PlayerConst.X, PlayerConst.ZERO, PlayerConst.ZERO);
 
         Player player2 = new Player(PlayerConst.HUMAN1, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
 
-        LastPlayer lastPlayer = new LastPlayer(PlayerConst.COMPUTER, PlayerConst.O);
+        LastPlayer lastPlayer = new LastPlayer(PlayerConst.HUMAN1, PlayerConst.O);
 
-        game.setPlayerList(Arrays.asList(player1, player2));
-        game.setLastPlayer(lastPlayer);
-
-        return game;
-    }
-
-    public Game setUpBoard(Game game) {
-        String [][] boardArr = {{" ", "|", " ", "|", " "},
+        Board board = new Board(new String[][]{{" ", "|", " ", "|", " "},
                 {"-", "+", "-", "+", "-"},
                 {" ", "|", " ", "|", " "},
                 {"-", "+", "-", "+", "-"},
-                {" ", "|", " ", "|", " "}};
-        Board board = new Board();
-        board.setBoardArr(boardArr);
+                {" ", "|", " ", "|", " "}});
 
-
-        game.setBoard(board);
-
-        return game;
+        return new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.COMPUTER_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY);
     }
 
-    public Game setUpGame(Game game) {
-        String stateOfPlay = GameConst.ONGOING;
-        String typeOfGame = GameConst.HUMAN_VS_COMPUTER;
-        String winnerPlayer = " ";
-        String winnerPiece = " ";
+    public Game setUpHumanHumanGame() {
+        Player player1 = new Player(PlayerConst.HUMAN1, PlayerConst.X, PlayerConst.ZERO, PlayerConst.ZERO);
 
-        game.setStateOfPlay(stateOfPlay);
-        game.setTypeOfGame(typeOfGame);
-        game.setWinnerPlayer(winnerPlayer);
-        game.setWinnerPiece(winnerPiece);
+        Player player2 = new Player(PlayerConst.HUMAN2, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
 
-        return game;
+        LastPlayer lastPlayer = new LastPlayer(PlayerConst.HUMAN2, PlayerConst.O);
+
+        Board board = new Board(new String[][]{{" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "}});
+
+        return new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.HUMAN_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY);
     }
 }

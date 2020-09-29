@@ -1,42 +1,35 @@
 package cognizant.tictactoe.controller;
 
+import cognizant.tictactoe.constants.GameConst;
 import cognizant.tictactoe.constants.PlayerConst;
 import cognizant.tictactoe.model.Board;
 import cognizant.tictactoe.model.Game;
 import cognizant.tictactoe.model.LastPlayer;
 import cognizant.tictactoe.model.Player;
 import cognizant.tictactoe.service.GameService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.springframework.http.ResponseEntity;
+import org.mockito.Mockito;
 
 import java.util.Arrays;
 
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
 
 class GameControllerTest {
 
-    @Mock
-    private GameService mockGameService;
-
-    @InjectMocks
-    private GameController gameControllerUnderTest;
-
+    GameController gameController;
+    GameService gameService;
 
     @BeforeEach
-    void setUp() {
-        initMocks(this);
+    public void setup() {
+        gameService = Mockito.mock(GameService.class);
+        gameController = new GameController(gameService);
     }
 
     @Test
-    void whenGameIsAgainstComputer() {
-        // setup
-
+    void getGame_setUpHumanComputerGameModel() {
+        // arrange
         final Player player1 = new Player(PlayerConst.HUMAN1, PlayerConst.X, PlayerConst.ZERO, PlayerConst.ZERO);
 
         final Player player2 = new Player(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
@@ -49,16 +42,72 @@ class GameControllerTest {
                 {"-", "+", "-", "+", "-"},
                 {" ", "|", " ", "|", " "}});
 
-        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, "stateOfPlay", "typeOfGame", "winnerPlayer", " ");
+        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.COMPUTER_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY);
 
-        when(mockGameService.setUpPlayersHumanComputer(any(Game.class))).thenReturn(expected);
-        when(mockGameService.setUpBoard(any(Game.class))).thenReturn(expected);
-        when(mockGameService.setUpGame(any(Game.class))).thenReturn(expected);
+        when(gameService.setUpHumanComputerGame()).thenReturn(expected);
 
-        // implement the test
-        final ResponseEntity<Game> result = gameControllerUnderTest.buildHumanComputerGame();
+        // act
+        Game actual = gameController.buildHumanComputerGame().getBody();
 
-        // verify the results
-        Assertions.assertEquals(result.getBody().getPlayerList(), expected.getPlayerList());
+        // assert
+        Mockito.verify(gameService).setUpHumanComputerGame();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void getGame_setUpComputerHumanGameModel() {
+        // arrange
+        final Player player1 = new Player(PlayerConst.COMPUTER, PlayerConst.X, PlayerConst.ZERO, PlayerConst.ZERO);
+
+        final Player player2 = new Player(PlayerConst.HUMAN1, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
+
+        LastPlayer lastPlayer = new LastPlayer(PlayerConst.HUMAN1, PlayerConst.O);
+
+        Board board = new Board(new String[][]{{" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "}});
+
+        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.COMPUTER_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY);
+
+        when(gameService.setUpComputerHumanGame()).thenReturn(expected);
+
+        // act
+        Game actual = gameController.buildComputerHumanGame().getBody();
+
+        // assert
+        Mockito.verify(gameService).setUpComputerHumanGame();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void getGame_setUpHumanHumanGameModel() {
+        // arrange
+        final Player player1 = new Player(PlayerConst.HUMAN1, PlayerConst.X, PlayerConst.ZERO, PlayerConst.ZERO);
+
+        final Player player2 = new Player(PlayerConst.HUMAN2, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
+
+        LastPlayer lastPlayer = new LastPlayer(PlayerConst.HUMAN2, PlayerConst.O);
+
+        Board board = new Board(new String[][]{{" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "}});
+
+        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.HUMAN_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY);
+
+        when(gameService.setUpComputerHumanGame()).thenReturn(expected);
+
+        // act
+        Game actual = gameController.buildComputerHumanGame().getBody();
+
+        // assert
+        Mockito.verify(gameService).setUpComputerHumanGame();
+
+        assertEquals(expected, actual);
     }
 }

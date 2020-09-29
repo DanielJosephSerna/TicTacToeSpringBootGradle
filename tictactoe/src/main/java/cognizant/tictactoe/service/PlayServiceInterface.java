@@ -1,23 +1,31 @@
 package cognizant.tictactoe.service;
 
 import cognizant.tictactoe.model.Game;
+import cognizant.tictactoe.model.Player;
 
 public interface PlayServiceInterface {
-    public Game makeHumanMove(Game game);
 
-    public Game makeComputerMove(Game game);
+    Game computerMove(Game game, Player tempPlayer);
 
-    public Game setBoard(Game game);
+    Game performComputerMove(Game game);
 
-    public Game switchLastPlayer(Game game);
+    Game performPlayerSwitch(Game game, Player tempPlayer);
 
-    public boolean checkHorizontalWin(Game game);
+    Game performGameEnd(Game game, Player tempPlayer);
 
-    public boolean checkVerticalWin(Game game);
+    Game humanMove(Game game, Player tempPlayer);
 
-    public boolean checkDiagonalWin(Game game);
+    Player getPlayerDetails(Game game);
 
-    public boolean checkTie(Game game);
+    Game performHumanMove(Game game);
 
-    public Game performHumanBeforeComputerMove(Game game);
+    Game performHumanAndComputerMove(Game game);
+
+    boolean checkHorizontalWin(Game game, String piece);
+
+    boolean checkVerticalWin(Game game, String piece);
+
+    boolean checkDiagonalWin(Game game, String piece);
+
+    boolean checkTie(Game game);
 }

@@ -1,52 +1,93 @@
 package cognizant.tictactoe.service;
 
+import cognizant.tictactoe.constants.GameConst;
+import cognizant.tictactoe.constants.PlayerConst;
+import cognizant.tictactoe.model.Board;
 import cognizant.tictactoe.model.Game;
-import org.junit.jupiter.api.Assertions;
+import cognizant.tictactoe.model.LastPlayer;
+import cognizant.tictactoe.model.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class GameServiceTest {
 
-    private GameService gameServiceUnderTest;
+    GameService gameService;
 
     @BeforeEach
-    void setUp() {
-        gameServiceUnderTest = new GameService();
+    public void setup() {
+        gameService = new GameService();
     }
 
     @Test
-    void testSetUpPlayers() {
-        // Setup
-        final Game expected = new Game();
+    void getGame_setUpHumanComputerGameModel() {
+        // arrange
+        final Player player1 = new Player(PlayerConst.HUMAN1, PlayerConst.X, PlayerConst.ZERO, PlayerConst.ZERO);
 
-        // Run the test
-        final Game result = gameServiceUnderTest.setUpPlayersHumanComputer(expected);
+        final Player player2 = new Player(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
 
-        // Verify the results
-        Assertions.assertEquals(expected, result);
+        LastPlayer lastPlayer = new LastPlayer(PlayerConst.COMPUTER, PlayerConst.O);
+
+        Board board = new Board(new String[][]{{" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "}});
+
+        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.HUMAN_VS_COMPUTER, GameConst.EMPTY, GameConst.EMPTY);
+
+        // act
+
+        // assert
+        assertEquals(expected, gameService.setUpHumanComputerGame());
     }
 
     @Test
-    void testSetUpBoard() {
-        // Setup
-        final Game expected = new Game();
+    void getGame_setUpComputerHumanGameModel() {
 
-        // Run the test
-        final Game result = gameServiceUnderTest.setUpBoard(expected);
+        final Player player1 = new Player(PlayerConst.COMPUTER, PlayerConst.X, PlayerConst.ZERO, PlayerConst.ZERO);
 
-        // Verify the results
-        Assertions.assertEquals(expected, result);
+        final Player player2 = new Player(PlayerConst.HUMAN1, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
+
+        LastPlayer lastPlayer = new LastPlayer(PlayerConst.HUMAN1, PlayerConst.O);
+
+        Board board = new Board(new String[][]{{" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "}});
+
+        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.COMPUTER_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY);
+
+        // act
+
+        // assert
+        assertEquals(expected, gameService.setUpComputerHumanGame());
     }
 
     @Test
-    void testSetUpGame() {
-        // Setup
-        final Game expected = new Game();
+    void getGame_setUpHumanHumanGameModel() {
 
-        // Run the test
-        final Game result = gameServiceUnderTest.setUpGame(expected);
+        final Player player1 = new Player(PlayerConst.HUMAN1, PlayerConst.X, PlayerConst.ZERO, PlayerConst.ZERO);
 
-        // Verify the results
-        Assertions.assertEquals(expected, result);
+        final Player player2 = new Player(PlayerConst.HUMAN2, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
+
+        LastPlayer lastPlayer = new LastPlayer(PlayerConst.HUMAN2, PlayerConst.O);
+
+        Board board = new Board(new String[][]{{" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "},
+                {"-", "+", "-", "+", "-"},
+                {" ", "|", " ", "|", " "}});
+
+        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.HUMAN_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY);
+
+        // act
+
+        // assert
+        assertEquals(expected, gameService.setUpHumanHumanGame());
     }
 }

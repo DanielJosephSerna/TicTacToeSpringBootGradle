@@ -1,63 +1,73 @@
 package cognizant.tictactoe.controller;
 
-import cognizant.tictactoe.constants.PlayerConst;
 import cognizant.tictactoe.model.Board;
 import cognizant.tictactoe.model.Game;
 import cognizant.tictactoe.model.LastPlayer;
 import cognizant.tictactoe.model.Player;
 import cognizant.tictactoe.service.PlayService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Arrays;
 
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
 
 class PlayControllerTest {
 
-    @Mock
-    private PlayService mockPlayService;
-
-    @InjectMocks
-    private PlayController playControllerUnderTest;
+    PlayController playController;
+    PlayService playService;
 
     @BeforeEach
-    void setUp() {
-        initMocks(this);
+    public void setup() {
+        playService = Mockito.mock(PlayService.class);
+        playController = new PlayController(playService);
     }
 
-/*    @Test
-    void testPlayMove() {
-        // Setup
+    @Test
+    void getPlay_performAMoveOnTheBoard() {
+        // arrange
+        final Game expected = new Game(
+                Arrays.asList(new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
+                new LastPlayer("COMPUTER", "O"),
+                new Board(new String[][]{{" ", "|", " ", "|", " "},
+                        {"-", "+", "-", "+", "-"},
+                        {" ", "|", " ", "|", " "},
+                        {"-", "+", "-", "+", "-"},
+                        {" ", "|", " ", "|", " "}}), "ONGOING", "HUMAN VS COMPUTER", " ", " ");
 
-        final Player player1 = new Player(PlayerConst.HUMAN1, PlayerConst.X, PlayerConst.ZERO, PlayerConst.ZERO);
+        final ResponseEntity<Game> expectedResponse = new ResponseEntity<>(new Game(
+                Arrays.asList(new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
+                new LastPlayer("COMPUTER", "O"),
+                new Board(new String[][]{{" ", "|", " ", "|", " "},
+                        {"-", "+", "-", "+", "-"},
+                        {" ", "|", " ", "|", " "},
+                        {"-", "+", "-", "+", "-"},
+                        {" ", "|", " ", "|", " "}}), "ONGOING", "HUMAN VS COMPUTER", " ", " "), HttpStatus.OK);
 
-        final Player player2 = new Player(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
+        final Game expected2 = new Game(Arrays.asList(new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
+                new LastPlayer("COMPUTER", "O"),
+                new Board(new String[][]{{" ", "|", " ", "|", " "},
+                        {"-", "+", "-", "+", "-"},
+                        {" ", "|", " ", "|", " "},
+                        {"-", "+", "-", "+", "-"},
+                        {" ", "|", " ", "|", " "}}), "ONGOING", "HUMAN VS COMPUTER", " ", " ");
 
-        LastPlayer lastPlayer = new LastPlayer(PlayerConst.COMPUTER, PlayerConst.O);
+        when(playService.performHumanAndComputerMove(new Game(Arrays.asList(new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
+                new LastPlayer("COMPUTER", "O"),
+                new Board(new String[][]{{" ", "|", " ", "|", " "},
+                        {"-", "+", "-", "+", "-"},
+                        {" ", "|", " ", "|", " "},
+                        {"-", "+", "-", "+", "-"},
+                        {" ", "|", " ", "|", " "}}), "ONGOING", "HUMAN VS COMPUTER", " ", " "))).thenReturn(expected2);
 
-        Board board = new Board(new String[][]{{" ", "|", " ", "|", " "},
-                {"-", "+", "-", "+", "-"},
-                {" ", "|", " ", "|", " "},
-                {"-", "+", "-", "+", "-"},
-                {" ", "|", " ", "|", " "}});
+        // act
+        final ResponseEntity<Game> result = playController.performHumanAndComputerMove(expected);
 
-        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, "stateOfPlay", "typeOfGame", "winnerPlayer", " ");
-
-        when(mockPlayService.makeHumanMove(any(Game.class))).thenReturn(new Game());
-
-        // Run the test
-        final ResponseEntity<Game> result = playControllerUnderTest.playHumanMove(expected);
-
-        // Verify the results
-        Assertions.assertEquals(HttpStatus.OK, result.getStatusCode());
-        Assertions.assertNotNull(result.getBody());
-    }*/
+        // assert
+        assertEquals(expectedResponse, result);
+    }
 }

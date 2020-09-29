@@ -1,0 +1,63 @@
+{
+  "playerList": [
+    {
+      "type": "COMPUTER",
+      "piece": "X",
+      "xmove": 0,
+      "ymove": 0
+    },
+    {
+      "type": "HUMAN1",
+      "piece": "O",
+      "xmove": 0,
+      "ymove": 0
+    }
+  ],
+  "lastPlayer": {
+    "lastPlayer": "HUMAN1",
+    "lastPiece": "O"
+  },
+  "board": {
+    "boardArr": [
+      [
+        " ",
+        "|",
+        " ",
+        "|",
+        " "
+      ],
+      [
+        "-",
+        "+",
+        "-",
+        "+",
+        "-"
+      ],
+      [
+        " ",
+        "|",
+        " ",
+        "|",
+        " "
+      ],
+      [
+        "-",
+        "+",
+        "-",
+        "+",
+        "-"
+      ],
+      [
+        " ",
+        "|",
+        " ",
+        "|",
+        " "
+      ]
+    ]
+  },
+  "stateOfPlay": "ONGOING",
+  "typeOfGame": "COMPUTER VS HUMAN",
+  "winnerPlayer": " ",
+  "winnerPiece": " "
+}
