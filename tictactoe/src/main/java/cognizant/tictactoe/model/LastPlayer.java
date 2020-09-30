@@ -1,13 +1,12 @@
 package cognizant.tictactoe.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
-@Getter
-@ToString
 public class LastPlayer {
 
     private String lastPlayer;

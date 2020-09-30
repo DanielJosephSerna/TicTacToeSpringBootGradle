@@ -1,12 +1,12 @@
 package cognizant.tictactoe.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class Board {
 
     private String [][] boardArr;
