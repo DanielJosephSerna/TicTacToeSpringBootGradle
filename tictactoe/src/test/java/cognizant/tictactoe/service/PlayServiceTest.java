@@ -25,7 +25,7 @@ class PlayServiceTest {
 
     @Test
     void testComputerMove() {
-        // Setup
+        // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
                 new LastPlayer("COMPUTER", "O"),
@@ -45,16 +45,16 @@ class PlayServiceTest {
                         {"-", "+", "-", "+", "-"},
                         {" ", "|", " ", "|", " "}}), "ONGOING", "HUMAN VS COMPUTER", " ", " ");
 
-        // Run the test
+        // arrange
         final Game result = playServiceUnderTest.computerMove(game, tempPlayer);
 
-        // Verify the results
-        assertEquals(expectedResult.getLastPlayer().getLastPlayer(), result.getLastPlayer().getLastPlayer());
+        // assert
+        assertEquals(expectedResult.getLastPlayer().getPreviousPlayer(), result.getLastPlayer().getPreviousPlayer());
     }
 
     @Test
     void testPerformComputerMove() {
-        // Setup
+        // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
                 new LastPlayer("COMPUTER", "O"),
@@ -73,16 +73,16 @@ class PlayServiceTest {
                         {"-", "+", "-", "+", "-"},
                         {" ", "|", " ", "|", " "}}), "ONGOING", "HUMAN VS COMPUTER", " ", " ");
 
-        // Run the test
+        // arrange
         final Game result = playServiceUnderTest.performComputerMove(game);
 
-        // Verify the results
-        assertEquals(expectedResult.getLastPlayer().getLastPlayer(), result.getLastPlayer().getLastPlayer());
+        // assert
+        assertEquals(expectedResult.getLastPlayer().getPreviousPlayer(), result.getLastPlayer().getPreviousPlayer());
     }
 
     @Test
     void testPerformPlayerSwitch() {
-        // Setup
+        // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
                 new LastPlayer("COMPUTER", "O"),
@@ -102,16 +102,16 @@ class PlayServiceTest {
                         {"-", "+", "-", "+", "-"},
                         {" ", "|", " ", "|", " "}}), "ONGOING", "HUMAN VS COMPUTER", " ", " ");
 
-        // Run the test
+        // arrange
         final Game result = playServiceUnderTest.performPlayerSwitch(game, tempPlayer);
 
-        // Verify the results
+        // assert
         assertEquals(expectedResult, result);
     }
 
     @Test
     void testPerformGameEnd() {
-        // Setup
+        // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
                 new LastPlayer("COMPUTER", "O"),
@@ -131,16 +131,16 @@ class PlayServiceTest {
                         {"-", "+", "-", "+", "-"},
                         {" ", "|", " ", "|", " "}}), "ONGOING", "HUMAN VS COMPUTER", " ", " ");
 
-        // Run the test
+        // arrange
         final Game result = playServiceUnderTest.performGameEnd(game, tempPlayer);
 
-        // Verify the results
+        // assert
         assertEquals(expectedResult, result);
     }
 
     @Test
     void testHumanMove() {
-        // Setup
+        // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
                 new LastPlayer("COMPUTER", "O"),
@@ -161,16 +161,16 @@ class PlayServiceTest {
                         {"-", "+", "-", "+", "-"},
                         {" ", "|", " ", "|", " "}}), "ONGOING", "HUMAN VS COMPUTER", " ", " ");
 
-        // Run the test
+        // arrange
         final Game result = playServiceUnderTest.humanMove(game, tempPlayer);
 
-        // Verify the results
+        // assert
         assertEquals(expectedResult, result);
     }
 
     @Test
     void testGetPlayerDetails() {
-        // Setup
+        // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
                 new LastPlayer("COMPUTER", "O"),
@@ -182,16 +182,16 @@ class PlayServiceTest {
 
         final Player expectedResult = new Player("HUMAN1", "X", 0, 0);
 
-        // Run the test
+        // arrange
         final Player result = playServiceUnderTest.getPlayerDetails(game);
 
-        // Verify the results
+        // assert
         assertEquals(expectedResult, result);
     }
 
     @Test
     void testPerformHumanMove() {
-        // Setup
+        // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
                 new LastPlayer("COMPUTER", "O"),
@@ -210,16 +210,16 @@ class PlayServiceTest {
                         {"-", "+", "-", "+", "-"},
                         {" ", "|", " ", "|", " "}}), "ONGOING", "HUMAN VS COMPUTER", " ", " ");
 
-        // Run the test
+        // arrange
         final Game result = playServiceUnderTest.performHumanMove(game);
 
-        // Verify the results
-        assertEquals(expectedResult.getLastPlayer().getLastPlayer(), result.getLastPlayer().getLastPlayer());
+        // assert
+        assertEquals(expectedResult.getLastPlayer().getPreviousPlayer(), result.getLastPlayer().getPreviousPlayer());
     }
 
     @Test
     void testPerformHumanAndComputerMove() {
-        // Setup
+        // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
                 new LastPlayer("COMPUTER", "O"),
@@ -238,16 +238,16 @@ class PlayServiceTest {
                         {"-", "+", "-", "+", "-"},
                         {" ", "|", " ", "|", " "}}), "ONGOING", "HUMAN VS COMPUTER", " ", " ");
 
-        // Run the test
+        // arrange
         final Game result = playServiceUnderTest.performHumanAndComputerMove(game);
 
-        // Verify the results
-        assertEquals(expectedResult.getLastPlayer().getLastPlayer(), result.getLastPlayer().getLastPlayer());
+        // assert
+        assertEquals(expectedResult.getLastPlayer().getPreviousPlayer(), result.getLastPlayer().getPreviousPlayer());
     }
 
     @Test
     void checkHorizontalWin_ReturnTrue() {
-        // Setup
+        // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
                 new LastPlayer("HUMAN1", "X"),
@@ -256,16 +256,16 @@ class PlayServiceTest {
                         {" ", "|", " ", "|", "O"},
                         {"-", "+", "-", "+", "-"},
                         {" ", "|", " ", "|", "O"}}), "OVER", "HUMAN VS COMPUTER", "HUMAN1", "X");
-        // Run the test
+        // arrange
         final boolean result = playServiceUnderTest.checkHorizontalWin(game, "X");
 
-        // Verify the results
+        // assert
         assertTrue(result);
     }
 
     @Test
     void checkHorizontalWin_ReturnFalse() {
-        // Setup
+        // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
                 new LastPlayer("HUMAN1", "X"),
@@ -274,16 +274,16 @@ class PlayServiceTest {
                         {" ", "|", " ", "|", " "},
                         {"-", "+", "-", "+", "-"},
                         {" ", "|", " ", "|", " "}}), "ONGOING", "HUMAN VS COMPUTER", " ", " ");
-        // Run the test
+        // arrange
         final boolean result = playServiceUnderTest.checkHorizontalWin(game, "X");
 
-        // Verify the results
+        // assert
         assertFalse(result);
     }
 
     @Test
     void checkVerticalWin_ReturnTrue() {
-        // Setup
+        // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0, 2), new Player("COMPUTER", "O", 0, 0)),
                 new LastPlayer("HUMAN1", "X"),
@@ -293,16 +293,16 @@ class PlayServiceTest {
                         {"-", "+", "-", "+", "-"},
                         {" ", "|", "X", "|", "O"}}), "OVER", "HUMAN VS COMPUTER", "HUMAN1", "X");
 
-        // Run the test
+        // arrange
         final boolean result = playServiceUnderTest.checkVerticalWin(game, "X");
 
-        // Verify the results
+        // assert
         assertTrue(result);
     }
 
     @Test
     void checkVerticalWin_ReturnFalse() {
-        // Setup
+        // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
                 new LastPlayer("HUMAN1", "X"),
@@ -312,16 +312,16 @@ class PlayServiceTest {
                         {"-", "+", "-", "+", "-"},
                         {" ", "|", " ", "|", " "}}), "ONGOING", "HUMAN VS COMPUTER", " ", " ");
 
-        // Run the test
+        // arrange
         final boolean result = playServiceUnderTest.checkVerticalWin(game, "X");
 
-        // Verify the results
+        // assert
         assertFalse(result);
     }
 
     @Test
     void checkDiagonalWin_ReturnTrue() {
-        // Setup
+        // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
                 new LastPlayer("HUMAN1", "X"),
@@ -331,16 +331,16 @@ class PlayServiceTest {
                         {"-", "+", "-", "+", "-"},
                         {" ", "|", "O", "|", "X"}}), "OVER", "HUMAN VS COMPUTER", "HUMAN1", "X");
 
-        // Run the test
+        // arrange
         final boolean result = playServiceUnderTest.checkDiagonalWin(game, "X");
 
-        // Verify the results
+        // assert
         assertTrue(result);
     }
 
     @Test
     void checkDiagonalWin_ReturnFalse() {
-        // Setup
+        // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
                 new LastPlayer("HUMAN1", "X"),
@@ -350,16 +350,16 @@ class PlayServiceTest {
                         {"-", "+", "-", "+", "-"},
                         {" ", "|", " ", "|", " "}}), "ONGOING", "HUMAN VS COMPUTER", " ", " ");
 
-        // Run the test
+        // arrange
         final boolean result = playServiceUnderTest.checkDiagonalWin(game, "X");
 
-        // Verify the results
+        // assert
         assertFalse(result);
     }
 
     @Test
     void checkTie_ReturnTrue() {
-        // Setup
+        // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
                 new LastPlayer("HUMAN1", "X"),
@@ -369,16 +369,16 @@ class PlayServiceTest {
                         {"-", "+", "-", "+", "-"},
                         {"X", "|", "X", "|", "O"}}), "TIE", "HUMAN VS COMPUTER", " ", " ");
 
-        // Run the test
+        // arrange
         final boolean result = playServiceUnderTest.checkTie(game);
 
-        // Verify the results
+        // assert
         assertTrue(result);
     }
 
     @Test
     void checkTie_ReturnFalse() {
-        // Setup
+        // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0, 0), new Player("COMPUTER", "O", 0, 0)),
                 new LastPlayer("HUMAN1", "X"),
@@ -388,10 +388,10 @@ class PlayServiceTest {
                         {"-", "+", "-", "+", "-"},
                         {" ", "|", " ", "|", " "}}), "ONGOING", "HUMAN VS COMPUTER", " ", " ");
 
-        // Run the test
+        // arrange
         final boolean result = playServiceUnderTest.checkTie(game);
 
-        // Verify the results
+        // assert
         assertFalse(result);
     }
 }

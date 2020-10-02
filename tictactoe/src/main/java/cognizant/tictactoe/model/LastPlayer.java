@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LastPlayer {
 
-    private String lastPlayer;
+    private String previousPlayer;
     private String lastPiece;
 
 }

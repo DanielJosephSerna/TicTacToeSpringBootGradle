@@ -107,7 +107,7 @@ public class PlayService implements PlayServiceInterface {
     }
 
     public Game performPlayerSwitch(Game game, Player tempPlayer) {
-        game.getLastPlayer().setLastPlayer(tempPlayer.getType());
+        game.getLastPlayer().setPreviousPlayer(tempPlayer.getType());
         game.getLastPlayer().setLastPiece(tempPlayer.getPiece());
         return game;
     }
@@ -117,7 +117,7 @@ public class PlayService implements PlayServiceInterface {
                 || checkVerticalWin(game, tempPlayer.getPiece())
                 || checkDiagonalWin(game, tempPlayer.getPiece())) {
             game.setStateOfPlay(GameConst.OVER);
-            game.setWinnerPlayer(game.getLastPlayer().getLastPlayer());
+            game.setWinnerPlayer(game.getLastPlayer().getPreviousPlayer());
             game.setWinnerPiece(game.getLastPlayer().getLastPiece());
             return game;
         }
@@ -141,7 +141,7 @@ public class PlayService implements PlayServiceInterface {
 
     public Player getPlayerDetails(Game game) {
 
-        if(game.getPlayerList().get(PlayerConst.ZERO).getType().equals(game.getLastPlayer().getLastPlayer())) {
+        if(game.getPlayerList().get(PlayerConst.ZERO).getType().equals(game.getLastPlayer().getPreviousPlayer())) {
             return game.getPlayerList().get(PlayerConst.ONE);
         } else {
             return game.getPlayerList().get(PlayerConst.ZERO);
