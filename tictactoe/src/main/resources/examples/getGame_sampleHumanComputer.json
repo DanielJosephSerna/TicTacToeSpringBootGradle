@@ -3,57 +3,29 @@
     {
       "type": "HUMAN1",
       "piece": "X",
-      "xmove": 0,
-      "ymove": 0
+      "move": 0
     },
     {
       "type": "COMPUTER",
       "piece": "O",
-      "xmove": 0,
-      "ymove": 0
+      "move": 0
     }
   ],
   "lastPlayer": {
-    "lastPlayer": "COMPUTER",
+    "previousPlayer": "COMPUTER",
     "lastPiece": "O"
   },
   "board": {
     "boardArr": [
-      [
-        " ",
-        "|",
-        " ",
-        "|",
-        " "
-      ],
-      [
-        "-",
-        "+",
-        "-",
-        "+",
-        "-"
-      ],
-      [
-        " ",
-        "|",
-        " ",
-        "|",
-        " "
-      ],
-      [
-        "-",
-        "+",
-        "-",
-        "+",
-        "-"
-      ],
-      [
-        " ",
-        "|",
-        " ",
-        "|",
-        " "
-      ]
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
     ]
   },
   "stateOfPlay": "ONGOING",
