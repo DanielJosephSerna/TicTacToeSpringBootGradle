@@ -11,7 +11,6 @@ public class Player {
 
     private String type;
     private String piece;
-    private int xMove;
-    private int yMove;
+    private int move;
 
 }

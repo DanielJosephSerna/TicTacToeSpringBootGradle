@@ -3,18 +3,16 @@
     {
       "type": "COMPUTER",
       "piece": "X",
-      "xmove": 0,
-      "ymove": 0
+      "move": 0
     },
     {
       "type": "HUMAN1",
       "piece": "O",
-      "xmove": 0,
-      "ymove": 0
+      "move": 0
     }
   ],
   "lastPlayer": {
-    "lastPlayer": "HUMAN1",
+    "previousPlayer": "HUMAN1",
     "lastPiece": "O"
   },
   "board": {

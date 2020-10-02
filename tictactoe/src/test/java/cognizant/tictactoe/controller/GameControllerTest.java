@@ -30,17 +30,13 @@ class GameControllerTest {
     @Test
     void getGame_setUpHumanComputerGameModel() {
         // arrange
-        final Player player1 = new Player(PlayerConst.HUMAN1, PlayerConst.X, PlayerConst.ZERO, PlayerConst.ZERO);
+        final Player player1 = new Player(PlayerConst.HUMAN1, PlayerConst.X, PlayerConst.ZERO);
 
-        final Player player2 = new Player(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
+        final Player player2 = new Player(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.ZERO);
 
         LastPlayer lastPlayer = new LastPlayer(PlayerConst.COMPUTER, PlayerConst.O);
 
-        Board board = new Board(new String[][]{{" ", "|", " ", "|", " "},
-                {"-", "+", "-", "+", "-"},
-                {" ", "|", " ", "|", " "},
-                {"-", "+", "-", "+", "-"},
-                {" ", "|", " ", "|", " "}});
+        Board board = new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "});
 
         final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.COMPUTER_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY);
 
@@ -58,17 +54,13 @@ class GameControllerTest {
     @Test
     void getGame_setUpComputerHumanGameModel() {
         // arrange
-        final Player player1 = new Player(PlayerConst.COMPUTER, PlayerConst.X, PlayerConst.ZERO, PlayerConst.ZERO);
+        final Player player1 = new Player(PlayerConst.COMPUTER, PlayerConst.X, PlayerConst.ZERO);
 
-        final Player player2 = new Player(PlayerConst.HUMAN1, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
+        final Player player2 = new Player(PlayerConst.HUMAN1, PlayerConst.O, PlayerConst.ZERO);
 
         LastPlayer lastPlayer = new LastPlayer(PlayerConst.HUMAN1, PlayerConst.O);
 
-        Board board = new Board(new String[][]{{" ", "|", " ", "|", " "},
-                {"-", "+", "-", "+", "-"},
-                {" ", "|", " ", "|", " "},
-                {"-", "+", "-", "+", "-"},
-                {" ", "|", " ", "|", " "}});
+        Board board = new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "});
 
         final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.COMPUTER_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY);
 
@@ -86,17 +78,13 @@ class GameControllerTest {
     @Test
     void getGame_setUpHumanHumanGameModel() {
         // arrange
-        final Player player1 = new Player(PlayerConst.HUMAN1, PlayerConst.X, PlayerConst.ZERO, PlayerConst.ZERO);
+        final Player player1 = new Player(PlayerConst.HUMAN1, PlayerConst.X, PlayerConst.ZERO);
 
-        final Player player2 = new Player(PlayerConst.HUMAN2, PlayerConst.O, PlayerConst.ZERO, PlayerConst.ZERO);
+        final Player player2 = new Player(PlayerConst.HUMAN2, PlayerConst.O, PlayerConst.ZERO);
 
         LastPlayer lastPlayer = new LastPlayer(PlayerConst.HUMAN2, PlayerConst.O);
 
-        Board board = new Board(new String[][]{{" ", "|", " ", "|", " "},
-                {"-", "+", "-", "+", "-"},
-                {" ", "|", " ", "|", " "},
-                {"-", "+", "-", "+", "-"},
-                {" ", "|", " ", "|", " "}});
+        Board board = new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "});
 
         final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.HUMAN_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY);
 

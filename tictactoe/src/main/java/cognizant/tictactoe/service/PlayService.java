@@ -11,7 +11,7 @@ import java.util.Random;
 @Service
 public class PlayService implements PlayServiceInterface {
 
-    String [][] tempBoard;
+    String [] tempBoard;
     Player tempPlayer;
 
     public Game computerMove(Game game, Player tempPlayer) {
@@ -27,56 +27,56 @@ public class PlayService implements PlayServiceInterface {
 
             switch (computerMove) {
                 case 1:
-                    if (tempBoard[0][0].equals(GameConst.EMPTY)) {
-                        tempBoard[0][0] = tempPlayer.getPiece();
+                    if (tempBoard[0].equals(GameConst.EMPTY)) {
+                        tempBoard[0] = tempPlayer.getPiece();
                         loopCondition = 1;
                     }
                     break;
                 case 2:
-                    if (tempBoard[0][2].equals(GameConst.EMPTY)) {
-                        tempBoard[0][2] = tempPlayer.getPiece();
+                    if (tempBoard[1].equals(GameConst.EMPTY)) {
+                        tempBoard[1] = tempPlayer.getPiece();
                         loopCondition = 1;
                     }
                     break;
                 case 3:
-                    if (tempBoard[0][4].equals(GameConst.EMPTY)) {
-                        tempBoard[0][4] = tempPlayer.getPiece();
+                    if (tempBoard[2].equals(GameConst.EMPTY)) {
+                        tempBoard[2] = tempPlayer.getPiece();
                         loopCondition = 1;
                     }
                     break;
                 case 4:
-                    if (tempBoard[2][0].equals(GameConst.EMPTY)) {
-                        tempBoard[2][0] = tempPlayer.getPiece();
+                    if (tempBoard[3].equals(GameConst.EMPTY)) {
+                        tempBoard[3] = tempPlayer.getPiece();
                         loopCondition = 1;
                     }
                     break;
                 case 5:
-                    if (tempBoard[2][2].equals(GameConst.EMPTY)) {
-                        tempBoard[2][2] = tempPlayer.getPiece();
+                    if (tempBoard[4].equals(GameConst.EMPTY)) {
+                        tempBoard[4] = tempPlayer.getPiece();
                         loopCondition = 1;
                     }
                     break;
                 case 6:
-                    if (tempBoard[2][4].equals(GameConst.EMPTY)) {
-                        tempBoard[2][4] = tempPlayer.getPiece();
+                    if (tempBoard[5].equals(GameConst.EMPTY)) {
+                        tempBoard[5] = tempPlayer.getPiece();
                         loopCondition = 1;
                     }
                     break;
                 case 7:
-                    if (tempBoard[4][0].equals(GameConst.EMPTY)) {
-                        tempBoard[4][0] = tempPlayer.getPiece();
+                    if (tempBoard[6].equals(GameConst.EMPTY)) {
+                        tempBoard[6] = tempPlayer.getPiece();
                         loopCondition = 1;
                     }
                     break;
                 case 8:
-                    if (tempBoard[4][2].equals(GameConst.EMPTY)) {
-                        tempBoard[4][2] = tempPlayer.getPiece();
+                    if (tempBoard[7].equals(GameConst.EMPTY)) {
+                        tempBoard[7] = tempPlayer.getPiece();
                         loopCondition = 1;
                     }
                     break;
                 case 9:
-                    if (tempBoard[4][4].equals(GameConst.EMPTY)) {
-                        tempBoard[4][4] = tempPlayer.getPiece();
+                    if (tempBoard[8].equals(GameConst.EMPTY)) {
+                        tempBoard[8] = tempPlayer.getPiece();
                         loopCondition = 1;
                     }
                     break;
@@ -132,7 +132,7 @@ public class PlayService implements PlayServiceInterface {
     public Game humanMove(Game game, Player tempPlayer) {
         tempBoard = game.getBoard().getBoardArr();
 
-        tempBoard[tempPlayer.getXMove()][tempPlayer.getYMove()] = tempPlayer.getPiece();
+        tempBoard[tempPlayer.getMove()] = tempPlayer.getPiece();
 
         game.getBoard().setBoardArr(tempBoard);
 
@@ -184,41 +184,37 @@ public class PlayService implements PlayServiceInterface {
 
     public boolean checkHorizontalWin(Game game, String piece) {
         tempBoard = game.getBoard().getBoardArr();
-        if(tempBoard[0][0].equals(piece) && tempBoard[0][2].equals(piece) && tempBoard[0][4].equals(piece)) { return true; }
-        if(tempBoard[2][0].equals(piece) && tempBoard[2][2].equals(piece) && tempBoard[2][4].equals(piece)) { return true; }
-        if(tempBoard[4][0].equals(piece) && tempBoard[4][2].equals(piece) && tempBoard[4][4].equals(piece)) { return true; }
+        if(tempBoard[0].equals(piece) && tempBoard[1].equals(piece) && tempBoard[2].equals(piece)) { return true; }
+        if(tempBoard[3].equals(piece) && tempBoard[4].equals(piece) && tempBoard[5].equals(piece)) { return true; }
+        if(tempBoard[6].equals(piece) && tempBoard[7].equals(piece) && tempBoard[8].equals(piece)) { return true; }
 
         return false;
     }
 
     public boolean checkVerticalWin(Game game, String piece) {
         tempBoard = game.getBoard().getBoardArr();
-        if(tempBoard[0][0].equals(piece) && tempBoard[2][0].equals(piece) && tempBoard[4][0].equals(piece)) { return true; }
-        if(tempBoard[0][2].equals(piece) && tempBoard[2][2].equals(piece) && tempBoard[4][2].equals(piece)) { return true; }
-        if(tempBoard[0][4].equals(piece) && tempBoard[2][4].equals(piece) && tempBoard[4][4].equals(piece)) { return true; }
+        if(tempBoard[0].equals(piece) && tempBoard[1].equals(piece) && tempBoard[2].equals(piece)) { return true; }
+        if(tempBoard[3].equals(piece) && tempBoard[4].equals(piece) && tempBoard[5].equals(piece)) { return true; }
+        if(tempBoard[6].equals(piece) && tempBoard[7].equals(piece) && tempBoard[8].equals(piece)) { return true; }
 
         return false;
     }
 
     public boolean checkDiagonalWin(Game game, String piece) {
         tempBoard = game.getBoard().getBoardArr();
-        if(tempBoard[0][0].equals(piece) && tempBoard[2][2].equals(piece) && tempBoard[4][4].equals(piece)) { return true; }
-        if(tempBoard[0][4].equals(piece) && tempBoard[2][2].equals(piece) && tempBoard[4][0].equals(piece)) { return true; }
+        if(tempBoard[0].equals(piece) && tempBoard[4].equals(piece) && tempBoard[8].equals(piece)) { return true; }
+        if(tempBoard[2].equals(piece) && tempBoard[4].equals(piece) && tempBoard[8].equals(piece)) { return true; }
 
         return false;
     }
 
     public boolean checkTie(Game game) {
-        tempBoard = game.getBoard().getBoardArr();
-        int count = 0;
-        for(int i = 0; i < tempBoard.length; i=i+2) {
-            for(int j = 0; j < tempBoard.length; j=j+2) {
-                if(!tempBoard[i][j].equals(" ")) {
-                    count = count + 1;
-                }
+        for(int i = 0; i < 9; i++) {
+            if(! tempBoard[i].equals(GameConst.EMPTY)) {
+                return false;
             }
         }
 
-        return count == 9;
+        return true;
     }
 }

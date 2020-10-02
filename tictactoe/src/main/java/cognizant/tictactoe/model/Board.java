@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Board {
 
-    private String [][] boardArr;
+    private String [] boardArr;
 
 }
