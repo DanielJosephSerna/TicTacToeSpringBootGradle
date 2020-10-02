@@ -184,33 +184,50 @@ public class PlayService implements PlayServiceInterface {
 
     public boolean checkHorizontalWin(Game game, String piece) {
         tempBoard = game.getBoard().getBoardArr();
-        if(tempBoard[0].equals(piece) && tempBoard[1].equals(piece) && tempBoard[2].equals(piece)) { return true; }
-        if(tempBoard[3].equals(piece) && tempBoard[4].equals(piece) && tempBoard[5].equals(piece)) { return true; }
-        if(tempBoard[6].equals(piece) && tempBoard[7].equals(piece) && tempBoard[8].equals(piece)) { return true; }
+
+        for(int i = 0; i < 9; i=i+3) {
+            if(tempBoard[i].equals(piece) && tempBoard[i + 1].equals(piece) && tempBoard[i + 2].equals(piece)) {
+                return true;
+            }
+        }
 
         return false;
     }
 
     public boolean checkVerticalWin(Game game, String piece) {
         tempBoard = game.getBoard().getBoardArr();
-        if(tempBoard[0].equals(piece) && tempBoard[1].equals(piece) && tempBoard[2].equals(piece)) { return true; }
-        if(tempBoard[3].equals(piece) && tempBoard[4].equals(piece) && tempBoard[5].equals(piece)) { return true; }
-        if(tempBoard[6].equals(piece) && tempBoard[7].equals(piece) && tempBoard[8].equals(piece)) { return true; }
+
+        for(int i = 0; i <= 2; i=i+1) {
+            if(tempBoard[i].equals(piece) && tempBoard[i + 3].equals(piece) && tempBoard[i + 6].equals(piece)) {
+                return true;
+            }
+        }
 
         return false;
     }
 
     public boolean checkDiagonalWin(Game game, String piece) {
         tempBoard = game.getBoard().getBoardArr();
-        if(tempBoard[0].equals(piece) && tempBoard[4].equals(piece) && tempBoard[8].equals(piece)) { return true; }
-        if(tempBoard[2].equals(piece) && tempBoard[4].equals(piece) && tempBoard[8].equals(piece)) { return true; }
+
+        for(int i = 0; i <= 2; i=i+2) {
+            if(i == 0) {
+                if(tempBoard[i].equals(piece) && tempBoard[i + 4].equals(piece) && tempBoard[i + 8].equals(piece)) {
+                    return true;
+                }
+            } else if(i == 2) {
+                if(tempBoard[i].equals(piece) && tempBoard[i + 2].equals(piece) && tempBoard[i + 4].equals(piece)) {
+                    return true;
+                }
+            }
+        }
 
         return false;
     }
 
     public boolean checkTie(Game game) {
+        tempBoard = game.getBoard().getBoardArr();
         for(int i = 0; i < 9; i++) {
-            if(! tempBoard[i].equals(GameConst.EMPTY)) {
+            if(tempBoard[i].equals(GameConst.EMPTY)) {
                 return false;
             }
         }

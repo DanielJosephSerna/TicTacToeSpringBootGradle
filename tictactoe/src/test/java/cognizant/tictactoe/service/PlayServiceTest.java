@@ -19,7 +19,6 @@ class PlayServiceTest {
     @BeforeEach
     void setUp() {
         playServiceUnderTest = new PlayService();
-        playServiceUnderTest.tempBoard = new String[]{"value"};
         playServiceUnderTest.tempPlayer = mock(Player.class);
     }
 
@@ -119,7 +118,7 @@ class PlayServiceTest {
         final Game expectedResult = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
                 new LastPlayer("COMPUTER", "O"),
-                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", "HUMAN VS COMPUTER", " ", " ");
+                new Board(new String[]{"X", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", "HUMAN VS COMPUTER", " ", " ");
 
         // arrange
         final Game result = playServiceUnderTest.humanMove(game, tempPlayer);
@@ -191,7 +190,7 @@ class PlayServiceTest {
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
                 new LastPlayer("HUMAN1", "X"),
-                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "OVER", "HUMAN VS COMPUTER", "HUMAN1", "X");
+                new Board(new String[]{"X", "X", "X", "O", "O", " ", " ", " ", " "}), "OVER", "HUMAN VS COMPUTER", "HUMAN1", "X");
         // arrange
         final boolean result = playServiceUnderTest.checkHorizontalWin(game, "X");
 
@@ -219,7 +218,7 @@ class PlayServiceTest {
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
                 new LastPlayer("HUMAN1", "X"),
-                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "OVER", "HUMAN VS COMPUTER", "HUMAN1", "X");
+                new Board(new String[]{"X", "O", " ", "X", "O", " ", "X", " ", " "}), "OVER", "HUMAN VS COMPUTER", "HUMAN1", "X");
 
         // arrange
         final boolean result = playServiceUnderTest.checkVerticalWin(game, "X");
@@ -249,7 +248,7 @@ class PlayServiceTest {
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
                 new LastPlayer("HUMAN1", "X"),
-                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "OVER", "HUMAN VS COMPUTER", "HUMAN1", "X");
+                new Board(new String[]{"X", "O", " ", "O", "X", " ", " ", " ", "X"}), "OVER", "HUMAN VS COMPUTER", "HUMAN1", "X");
 
         // arrange
         final boolean result = playServiceUnderTest.checkDiagonalWin(game, "X");
@@ -279,7 +278,7 @@ class PlayServiceTest {
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
                 new LastPlayer("HUMAN1", "X"),
-                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "TIE", "HUMAN VS COMPUTER", " ", " ");
+                new Board(new String[]{"O", "O", "X", "X", "X", "O", "O", "X", "X"}), "TIE", "HUMAN VS COMPUTER", " ", " ");
 
         // arrange
         final boolean result = playServiceUnderTest.checkTie(game);
