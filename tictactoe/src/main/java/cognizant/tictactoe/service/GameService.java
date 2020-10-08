@@ -22,7 +22,7 @@ public class GameService implements GameServiceInterface {
 
         Board board = new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "});
 
-        return new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.HUMAN_VS_COMPUTER, GameConst.EMPTY, GameConst.EMPTY);
+        return new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.HUMAN_VS_COMPUTER, GameConst.EMPTY, GameConst.EMPTY, new Integer[]{0, 0, 0});
     }
 
     public Game setUpComputerHumanGame() {
@@ -34,7 +34,7 @@ public class GameService implements GameServiceInterface {
 
         Board board = new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "});
 
-        return new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.COMPUTER_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY);
+        return new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.COMPUTER_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY, new Integer[]{0, 0, 0});
     }
 
     public Game setUpHumanHumanGame() {
@@ -46,6 +46,6 @@ public class GameService implements GameServiceInterface {
 
         Board board = new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "});
 
-        return new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.HUMAN_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY);
+        return new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.HUMAN_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY, new Integer[]{0, 0, 0});
     }
 }

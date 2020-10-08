@@ -31,5 +31,10 @@
   "stateOfPlay": "ONGOING",
   "typeOfGame": "HUMAN VS HUMAN",
   "winnerPlayer": " ",
-  "winnerPiece": " "
+  "winnerPiece": " ",
+  "winningLine": [
+    0,
+    0,
+    0
+  ]
 }

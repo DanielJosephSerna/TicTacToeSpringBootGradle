@@ -13,6 +13,7 @@ public class PlayService implements PlayServiceInterface {
 
     String [] tempBoard;
     Player tempPlayer;
+    Integer [] winningLine;
 
     public Game computerMove(Game game, Player tempPlayer) {
         tempBoard = game.getBoard().getBoardArr();
@@ -187,6 +188,8 @@ public class PlayService implements PlayServiceInterface {
 
         for(int i = 0; i < 9; i=i+3) {
             if(tempBoard[i].equals(piece) && tempBoard[i + 1].equals(piece) && tempBoard[i + 2].equals(piece)) {
+                winningLine=new Integer[]{i, i+1, i+2};
+                game.setWinningLine(winningLine);
                 return true;
             }
         }
@@ -199,6 +202,8 @@ public class PlayService implements PlayServiceInterface {
 
         for(int i = 0; i <= 2; i=i+1) {
             if(tempBoard[i].equals(piece) && tempBoard[i + 3].equals(piece) && tempBoard[i + 6].equals(piece)) {
+                winningLine=new Integer[]{i, i+3, i+6};
+                game.setWinningLine(winningLine);
                 return true;
             }
         }
@@ -212,12 +217,14 @@ public class PlayService implements PlayServiceInterface {
         for(int i = 0; i <= 2; i=i+2) {
             if(i == 0) {
                 if(tempBoard[i].equals(piece) && tempBoard[i + 4].equals(piece) && tempBoard[i + 8].equals(piece)) {
+                    winningLine=new Integer[]{i, i+4, i+8};
+                    game.setWinningLine(winningLine);
                     return true;
                 }
-            } else if(i == 2) {
-                if(tempBoard[i].equals(piece) && tempBoard[i + 2].equals(piece) && tempBoard[i + 4].equals(piece)) {
-                    return true;
-                }
+            } else if(i == 2 && tempBoard[i].equals(piece) && tempBoard[i + 2].equals(piece) && tempBoard[i + 4].equals(piece)) {
+                winningLine=new Integer[]{i, i+2, i+4};
+                game.setWinningLine(winningLine);
+                return true;
             }
         }
 

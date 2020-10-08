@@ -38,7 +38,7 @@ class GameControllerTest {
 
         Board board = new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "});
 
-        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.COMPUTER_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY);
+        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.COMPUTER_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY, new Integer[]{0, 0, 0});
 
         when(gameService.setUpHumanComputerGame()).thenReturn(expected);
 
@@ -62,7 +62,7 @@ class GameControllerTest {
 
         Board board = new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "});
 
-        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.COMPUTER_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY);
+        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.COMPUTER_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY, new Integer[]{0, 0, 0});
 
         when(gameService.setUpComputerHumanGame()).thenReturn(expected);
 
@@ -86,7 +86,7 @@ class GameControllerTest {
 
         Board board = new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "});
 
-        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.HUMAN_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY);
+        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.HUMAN_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY, new Integer[]{0, 0, 0});
 
         when(gameService.setUpComputerHumanGame()).thenReturn(expected);
 

@@ -20,5 +20,6 @@ public class Game {
     private String typeOfGame;
     private String winnerPlayer;
     private String winnerPiece;
+    private Integer [] winningLine;
 
 }
