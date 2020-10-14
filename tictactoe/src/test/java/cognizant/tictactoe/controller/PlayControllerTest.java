@@ -2,7 +2,6 @@ package cognizant.tictactoe.controller;
 
 import cognizant.tictactoe.model.Board;
 import cognizant.tictactoe.model.Game;
-import cognizant.tictactoe.model.LastPlayer;
 import cognizant.tictactoe.model.Player;
 import cognizant.tictactoe.service.PlayService;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,21 +31,17 @@ class PlayControllerTest {
         // arrange
         final Game expected = new Game(
                 Arrays.asList(new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
-                new LastPlayer("COMPUTER", "O"),
-                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", "HUMAN VS COMPUTER", " ", " ", new Integer[]{0, 0, 0});
+                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
 
         final ResponseEntity<Game> expectedResponse = new ResponseEntity<>(new Game(
                 Arrays.asList(new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
-                new LastPlayer("COMPUTER", "O"),
-                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", "HUMAN VS COMPUTER", " ", " ", new Integer[]{0, 0, 0}), HttpStatus.OK);
+                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0}), HttpStatus.OK);
 
         final Game expected2 = new Game(Arrays.asList(new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
-                new LastPlayer("COMPUTER", "O"),
-                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", "HUMAN VS COMPUTER", " ", " ", new Integer[]{0, 0, 0});
+                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
 
         when(playService.performHumanAndComputerMove(new Game(Arrays.asList(new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
-                new LastPlayer("COMPUTER", "O"),
-                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", "HUMAN VS COMPUTER", " ", " ", new Integer[]{0, 0, 0}))).thenReturn(expected2);
+                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0}))).thenReturn(expected2);
 
         // act
         final ResponseEntity<Game> result = playController.performHumanAndComputerMove(expected);

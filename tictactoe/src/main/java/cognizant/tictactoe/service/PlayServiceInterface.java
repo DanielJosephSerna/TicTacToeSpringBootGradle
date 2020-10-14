@@ -9,8 +9,6 @@ public interface PlayServiceInterface {
 
     Game performComputerMove(Game game);
 
-    Game performPlayerSwitch(Game game, Player tempPlayer);
-
     Game performGameEnd(Game game, Player tempPlayer);
 
     Game humanMove(Game game, Player tempPlayer);

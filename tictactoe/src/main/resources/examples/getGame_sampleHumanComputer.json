@@ -11,10 +11,6 @@
       "move": 0
     }
   ],
-  "lastPlayer": {
-    "previousPlayer": "COMPUTER",
-    "lastPiece": "O"
-  },
   "board": {
     "boardArr": [
       " ",
@@ -28,10 +24,7 @@
       " "
     ]
   },
-  "stateOfPlay": "ONGOING",
-  "typeOfGame": "HUMAN VS COMPUTER",
-  "winnerPlayer": " ",
-  "winnerPiece": " ",
+  "status": "ONGOING",
   "winningLine": [
     0,
     0,

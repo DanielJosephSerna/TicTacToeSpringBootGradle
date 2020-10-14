@@ -12,14 +12,9 @@ import java.util.List;
 public class Game {
 
     private List<Player> playerList;
-    private LastPlayer lastPlayer;
 
     private Board board;
 
-    private String stateOfPlay;
-    private String typeOfGame;
-    private String winnerPlayer;
-    private String winnerPiece;
+    private String status;
     private Integer [] winningLine;
-
 }

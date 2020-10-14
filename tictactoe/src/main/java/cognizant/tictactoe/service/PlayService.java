@@ -98,18 +98,9 @@ public class PlayService implements PlayServiceInterface {
         // set move in board
         game = computerMove(game, tempPlayer);
 
-        // switch the player
-        game = performPlayerSwitch(game, tempPlayer);
-
         // check for win or tie
         game = performGameEnd(game, tempPlayer);
 
-        return game;
-    }
-
-    public Game performPlayerSwitch(Game game, Player tempPlayer) {
-        game.getLastPlayer().setPreviousPlayer(tempPlayer.getType());
-        game.getLastPlayer().setLastPiece(tempPlayer.getPiece());
         return game;
     }
 
@@ -117,14 +108,12 @@ public class PlayService implements PlayServiceInterface {
         if(checkHorizontalWin(game, tempPlayer.getPiece())
                 || checkVerticalWin(game, tempPlayer.getPiece())
                 || checkDiagonalWin(game, tempPlayer.getPiece())) {
-            game.setStateOfPlay(GameConst.OVER);
-            game.setWinnerPlayer(game.getLastPlayer().getPreviousPlayer());
-            game.setWinnerPiece(game.getLastPlayer().getLastPiece());
+            game.setStatus(GameConst.OVER);
             return game;
         }
 
         if(checkTie(game)) {
-            game.setStateOfPlay(GameConst.TIE);
+            game.setStatus(GameConst.TIE);
             return game;
         }
         return game;
@@ -142,7 +131,16 @@ public class PlayService implements PlayServiceInterface {
 
     public Player getPlayerDetails(Game game) {
 
-        if(game.getPlayerList().get(PlayerConst.ZERO).getType().equals(game.getLastPlayer().getPreviousPlayer())) {
+        int countMoves = 0;
+        tempBoard = game.getBoard().getBoardArr();
+
+        for(int i = 0; i < 9; i=i+1) {
+            if(tempBoard[i].equals(" ")) {
+                countMoves = countMoves + 1;
+            }
+        }
+
+        if(countMoves % 2 == 0) {
             return game.getPlayerList().get(PlayerConst.ONE);
         } else {
             return game.getPlayerList().get(PlayerConst.ZERO);
@@ -157,9 +155,6 @@ public class PlayService implements PlayServiceInterface {
         // set move in board
         game = humanMove(game, tempPlayer);
 
-        // switch the players
-        game = performPlayerSwitch(game, tempPlayer);
-
         // check for win or tie
         game = performGameEnd(game, tempPlayer);
 
@@ -172,7 +167,7 @@ public class PlayService implements PlayServiceInterface {
         game  = performHumanMove(game);
 
         // check for win or tie
-        if(game.getStateOfPlay().equals(GameConst.OVER) || game.getStateOfPlay().equals(GameConst.TIE)) {
+        if(game.getStatus().equals(GameConst.OVER) || game.getStatus().equals(GameConst.TIE)) {
             return game;
         }
 

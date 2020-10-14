@@ -4,7 +4,6 @@ import cognizant.tictactoe.constants.GameConst;
 import cognizant.tictactoe.constants.PlayerConst;
 import cognizant.tictactoe.model.Board;
 import cognizant.tictactoe.model.Game;
-import cognizant.tictactoe.model.LastPlayer;
 import cognizant.tictactoe.model.Player;
 import cognizant.tictactoe.service.GameService;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,11 +33,9 @@ class GameControllerTest {
 
         final Player player2 = new Player(PlayerConst.COMPUTER, PlayerConst.O, PlayerConst.ZERO);
 
-        LastPlayer lastPlayer = new LastPlayer(PlayerConst.COMPUTER, PlayerConst.O);
-
         Board board = new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "});
 
-        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.COMPUTER_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY, new Integer[]{0, 0, 0});
+        final Game expected = new Game(Arrays.asList(player1, player2), board, GameConst.ONGOING, new Integer[]{0, 0, 0});
 
         when(gameService.setUpHumanComputerGame()).thenReturn(expected);
 
@@ -58,11 +55,9 @@ class GameControllerTest {
 
         final Player player2 = new Player(PlayerConst.HUMAN1, PlayerConst.O, PlayerConst.ZERO);
 
-        LastPlayer lastPlayer = new LastPlayer(PlayerConst.HUMAN1, PlayerConst.O);
-
         Board board = new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "});
 
-        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.COMPUTER_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY, new Integer[]{0, 0, 0});
+        final Game expected = new Game(Arrays.asList(player1, player2), board, GameConst.ONGOING, new Integer[]{0, 0, 0});
 
         when(gameService.setUpComputerHumanGame()).thenReturn(expected);
 
@@ -82,11 +77,9 @@ class GameControllerTest {
 
         final Player player2 = new Player(PlayerConst.HUMAN2, PlayerConst.O, PlayerConst.ZERO);
 
-        LastPlayer lastPlayer = new LastPlayer(PlayerConst.HUMAN2, PlayerConst.O);
-
         Board board = new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "});
 
-        final Game expected = new Game(Arrays.asList(player1, player2), lastPlayer, board, GameConst.ONGOING, GameConst.HUMAN_VS_HUMAN, GameConst.EMPTY, GameConst.EMPTY, new Integer[]{0, 0, 0});
+        final Game expected = new Game(Arrays.asList(player1, player2), board, GameConst.ONGOING, new Integer[]{0, 0, 0});
 
         when(gameService.setUpComputerHumanGame()).thenReturn(expected);
 
