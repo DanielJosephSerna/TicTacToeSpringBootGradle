@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,7 +28,7 @@ class PlayControllerTest {
     }
 
     @Test
-    void getPlay_performAMoveOnTheBoard() {
+    void getPlay_performHumanAndComputerMoveOnTheBoard() {
         // arrange
         final Game expected = new Game(
                 Arrays.asList(new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
@@ -45,6 +46,30 @@ class PlayControllerTest {
 
         // act
         final ResponseEntity<Game> result = playController.performHumanAndComputerMove(expected);
+
+        // assert
+        assertEquals(expectedResponse, result);
+    }
+
+    @Test
+    void getPlay_performHumanAndHumanMoveOnTheBoard() {
+        // arrange
+        final Game parameter = new Game(
+                Arrays.asList(new Player("HUMAN1", "X", 0), new Player("HUMAN2", "O", 0)),
+                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
+
+        final Game serviceReturn = new Game(
+                Arrays.asList(new Player("HUMAN1", "X", 0), new Player("HUMAN2", "O", 0)),
+                new Board(new String[]{"X", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
+
+        final ResponseEntity<Game> expectedResponse = new ResponseEntity<>(new Game(
+                Arrays.asList(new Player("HUMAN1", "X", 0), new Player("HUMAN2", "O", 0)),
+                new Board(new String[]{"X", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0}), HttpStatus.OK);
+
+        when(playService.performHumanAndHumanMove(parameter)).thenReturn(serviceReturn);
+
+        // act
+        final ResponseEntity<Game> result = playController.performHumanAndHumanMove(parameter);
 
         // assert
         assertEquals(expectedResponse, result);

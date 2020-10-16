@@ -22,6 +22,24 @@ class PlayServiceTest {
     }
 
     @Test
+    void testPerformHumanAndHumanMove() {
+        // act
+        final Game game = new Game(Arrays.asList(
+                new Player("HUMAN1", "X", 0), new Player("HUMAN2", "O", 0)),
+                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
+
+        final Game expectedResult = new Game(Arrays.asList(
+                new Player("HUMAN1", "X", 0), new Player("HUMAN2", "O", 0)),
+                new Board(new String[]{"X", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
+
+        // arrange
+        final Game result = playServiceUnderTest.performHumanAndHumanMove(game);
+
+        // assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     void testComputerMove() {
         // act
         final Game game = new Game(Arrays.asList(

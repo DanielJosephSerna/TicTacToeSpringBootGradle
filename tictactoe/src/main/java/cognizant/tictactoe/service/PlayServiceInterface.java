@@ -5,6 +5,8 @@ import cognizant.tictactoe.model.Player;
 
 public interface PlayServiceInterface {
 
+    Game performHumanAndHumanMove(Game game);
+
     Game computerMove(Game game, Player tempPlayer);
 
     Game performComputerMove(Game game);

@@ -15,6 +15,13 @@ public class PlayService implements PlayServiceInterface {
     Player tempPlayer;
     Integer [] winningLine;
 
+    public Game performHumanAndHumanMove(Game game) {
+
+        game = performHumanMove(game);
+
+        return game;
+    }
+
     public Game computerMove(Game game, Player tempPlayer) {
         tempBoard = game.getBoard().getBoardArr();
         Random random = new Random();
