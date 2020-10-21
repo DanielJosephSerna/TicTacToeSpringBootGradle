@@ -22,6 +22,38 @@ class PlayServiceTest {
     }
 
     @Test
+    void testNumberOfMoves() {
+        // act
+        final String [] board = {" ", " ", " ", " ", " ", " ", " ", " ", " "};
+
+        final int expectedResult = 0;
+
+        // arrange
+        final int countMoves = playServiceUnderTest.getNumberOfMoves(board);
+
+        // assert
+        assertEquals(expectedResult, countMoves);
+    }
+
+    @Test
+    void testPerformMediumComputerMove() {
+        // act
+        final Game game = new Game(Arrays.asList(
+                new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
+                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
+
+        final Game expectedResult = new Game(Arrays.asList(
+                new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
+                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
+
+        // arrange
+        final Game result = playServiceUnderTest.performMediumComputerMove(game);
+
+        // assert
+        assertEquals(expectedResult.getStatus(), result.getStatus());
+    }
+
+    @Test
     void testPerformHumanAndHumanMove() {
         // act
         final Game game = new Game(Arrays.asList(
@@ -40,7 +72,7 @@ class PlayServiceTest {
     }
 
     @Test
-    void testComputerMove() {
+    void testEasyComputerMove() {
         // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
@@ -59,7 +91,7 @@ class PlayServiceTest {
     }
 
     @Test
-    void testPerformComputerMove() {
+    void testPerformEasyComputerMove() {
         // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
@@ -74,25 +106,6 @@ class PlayServiceTest {
 
         // assert
         assertEquals(expectedResult.getStatus(), result.getStatus());
-    }
-
-    @Test
-    void testPerformGameEnd() {
-        // act
-        final Game game = new Game(Arrays.asList(
-                new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
-                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
-
-        final Player tempPlayer = new Player("HUMAN1", "X", 0);
-        final Game expectedResult = new Game(Arrays.asList(
-                new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
-                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
-
-        // arrange
-        final Game result = playServiceUnderTest.performGameEnd(game, tempPlayer);
-
-        // assert
-        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -116,6 +129,42 @@ class PlayServiceTest {
     }
 
     @Test
+    void testPerformHumanMove() {
+        // act
+        final Game game = new Game(Arrays.asList(
+                new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
+                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
+
+        final Game expectedResult = new Game(Arrays.asList(
+                new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
+                new Board(new String[]{"X", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
+
+        // arrange
+        final Game result = playServiceUnderTest.performHumanMove(game);
+
+        // assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testPerformHumanAndEasyComputerMove() {
+        // act
+        final Game game = new Game(Arrays.asList(
+                new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
+                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
+
+        final Game expectedResult = new Game(Arrays.asList(
+                new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
+                new Board(new String[]{"X", " ", " ", " ", "O", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
+
+        // arrange
+        final Game result = playServiceUnderTest.performHumanAndEasyComputerMove(game);
+
+        // assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     void testGetPlayerDetails() {
         // act
         final Game game = new Game(Arrays.asList(
@@ -132,39 +181,22 @@ class PlayServiceTest {
     }
 
     @Test
-    void testPerformHumanMove() {
+    void testPerformGameEnd_StatusShouldBeOnging() {
         // act
         final Game game = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
                 new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
 
+        final Player tempPlayer = new Player("HUMAN1", "X", 0);
         final Game expectedResult = new Game(Arrays.asList(
                 new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
                 new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
 
         // arrange
-        final Game result = playServiceUnderTest.performHumanMove(game);
+        final Game result = playServiceUnderTest.performGameEnd(game, tempPlayer);
 
         // assert
-        assertEquals(expectedResult.getStatus(), result.getStatus());
-    }
-
-    @Test
-    void testPerformHumanAndComputerMove() {
-        // act
-        final Game game = new Game(Arrays.asList(
-                new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
-                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
-
-        final Game expectedResult = new Game(Arrays.asList(
-                new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
-                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
-
-        // arrange
-        final Game result = playServiceUnderTest.performHumanAndEasyComputerMove(game);
-
-        // assert
-        assertEquals(expectedResult.getStatus(), result.getStatus());
+        assertEquals(expectedResult, result);
     }
 
     @Test

@@ -17,103 +17,16 @@ public class PlayService implements PlayServiceInterface {
     Integer [] winningLine;
     int countMoves;
 
-    public Game performHumanAndHumanMove(Game game) {
+    public int getNumberOfMoves(String [] board) {
+        countMoves = 0;
 
-        game = performHumanMove(game);
-
-        return game;
-    }
-
-    public Game easyComputerMove(Game game, Player tempPlayer) {
-
-        tempBoard = game.getBoard().getBoardArr();
-        Random random = new Random();
-
-        int loopCondition = -1;
-        int computerMove;
-
-        if(countMoves == 1) {
-
-            if(tempBoard[4].equals(" ")) {
-                tempBoard[4] = tempPlayer.getPiece();
-            } else if(tempBoard[0].equals(" ")) {
-                tempBoard[0] = tempPlayer.getPiece();
-            } else if(tempBoard[2].equals(" ")) {
-                tempBoard[2] = tempPlayer.getPiece();
-            } else if(tempBoard[6].equals(" ")) {
-                tempBoard[6] = tempPlayer.getPiece();
-            } else if(tempBoard[8].equals(" ")) {
-                tempBoard[8] = tempPlayer.getPiece();
-            }
-        } else {
-            while(loopCondition == -1) {
-
-                computerMove = random.nextInt(9) + 1;
-
-                switch (computerMove) {
-                    case 1:
-                        if (tempBoard[0].equals(GameConst.EMPTY)) {
-                            tempBoard[0] = tempPlayer.getPiece();
-                            loopCondition = 1;
-                        }
-                        break;
-                    case 2:
-                        if (tempBoard[1].equals(GameConst.EMPTY)) {
-                            tempBoard[1] = tempPlayer.getPiece();
-                            loopCondition = 1;
-                        }
-                        break;
-                    case 3:
-                        if (tempBoard[2].equals(GameConst.EMPTY)) {
-                            tempBoard[2] = tempPlayer.getPiece();
-                            loopCondition = 1;
-                        }
-                        break;
-                    case 4:
-                        if (tempBoard[3].equals(GameConst.EMPTY)) {
-                            tempBoard[3] = tempPlayer.getPiece();
-                            loopCondition = 1;
-                        }
-                        break;
-                    case 5:
-                        if (tempBoard[4].equals(GameConst.EMPTY)) {
-                            tempBoard[4] = tempPlayer.getPiece();
-                            loopCondition = 1;
-                        }
-                        break;
-                    case 6:
-                        if (tempBoard[5].equals(GameConst.EMPTY)) {
-                            tempBoard[5] = tempPlayer.getPiece();
-                            loopCondition = 1;
-                        }
-                        break;
-                    case 7:
-                        if (tempBoard[6].equals(GameConst.EMPTY)) {
-                            tempBoard[6] = tempPlayer.getPiece();
-                            loopCondition = 1;
-                        }
-                        break;
-                    case 8:
-                        if (tempBoard[7].equals(GameConst.EMPTY)) {
-                            tempBoard[7] = tempPlayer.getPiece();
-                            loopCondition = 1;
-                        }
-                        break;
-                    case 9:
-                        if (tempBoard[8].equals(GameConst.EMPTY)) {
-                            tempBoard[8] = tempPlayer.getPiece();
-                            loopCondition = 1;
-                        }
-                        break;
-                    default:
-                        return null;
-                }
+        for(int i = 0; i < 9; i=i+1) {
+            if(!board[i].equals(" ")) {
+                countMoves = countMoves + 1;
             }
         }
 
-        game.getBoard().setBoardArr(tempBoard);
-
-        return game;
+        return countMoves;
     }
 
     public Game mediumComputerMove(Game game, Player tempPlayer) {
@@ -273,18 +186,6 @@ public class PlayService implements PlayServiceInterface {
         return game;
     }
 
-    public Game performEasyComputerMove(Game game) {
-        tempPlayer = getPlayerDetails(game);
-
-        game = easyComputerMove(game, tempPlayer);
-
-        countMoves = countMoves + 1;
-
-        game = performGameEnd(game, tempPlayer);
-
-        return game;
-    }
-
     public Game performMediumComputerMove(Game game) {
         tempPlayer = getPlayerDetails(game);
 
@@ -297,18 +198,129 @@ public class PlayService implements PlayServiceInterface {
         return game;
     }
 
-    public Game performGameEnd(Game game, Player tempPlayer) {
-        if(checkHorizontalWin(game, tempPlayer.getPiece())
-                || checkVerticalWin(game, tempPlayer.getPiece())
-                || checkDiagonalWin(game, tempPlayer.getPiece())) {
-            game.setStatus(GameConst.OVER);
+    public Game performHumanAndMediumComputerMove(Game game) {
+
+        countMoves = getNumberOfMoves(game.getBoard().getBoardArr());
+
+        game  = performHumanMove(game);
+
+        if(game.getStatus().equals(GameConst.OVER) || game.getStatus().equals(GameConst.TIE)) {
             return game;
         }
 
-        if(checkTie(game)) {
-            game.setStatus(GameConst.TIE);
-            return game;
+        game = performMediumComputerMove(game);
+
+        return game;
+    }
+
+    public Game performHumanAndHumanMove(Game game) {
+
+        game = performHumanMove(game);
+
+        return game;
+    }
+
+    public Game easyComputerMove(Game game, Player tempPlayer) {
+
+        tempBoard = game.getBoard().getBoardArr();
+        Random random = new Random();
+
+        int loopCondition = -1;
+        int computerMove;
+
+        if(countMoves == 1) {
+
+            if(tempBoard[4].equals(" ")) {
+                tempBoard[4] = tempPlayer.getPiece();
+            } else if(tempBoard[0].equals(" ")) {
+                tempBoard[0] = tempPlayer.getPiece();
+            } else if(tempBoard[2].equals(" ")) {
+                tempBoard[2] = tempPlayer.getPiece();
+            } else if(tempBoard[6].equals(" ")) {
+                tempBoard[6] = tempPlayer.getPiece();
+            } else if(tempBoard[8].equals(" ")) {
+                tempBoard[8] = tempPlayer.getPiece();
+            }
+        } else {
+            while(loopCondition == -1) {
+
+                computerMove = random.nextInt(9) + 1;
+
+                switch (computerMove) {
+                    case 1:
+                        if (tempBoard[0].equals(GameConst.EMPTY)) {
+                            tempBoard[0] = tempPlayer.getPiece();
+                            loopCondition = 1;
+                        }
+                        break;
+                    case 2:
+                        if (tempBoard[1].equals(GameConst.EMPTY)) {
+                            tempBoard[1] = tempPlayer.getPiece();
+                            loopCondition = 1;
+                        }
+                        break;
+                    case 3:
+                        if (tempBoard[2].equals(GameConst.EMPTY)) {
+                            tempBoard[2] = tempPlayer.getPiece();
+                            loopCondition = 1;
+                        }
+                        break;
+                    case 4:
+                        if (tempBoard[3].equals(GameConst.EMPTY)) {
+                            tempBoard[3] = tempPlayer.getPiece();
+                            loopCondition = 1;
+                        }
+                        break;
+                    case 5:
+                        if (tempBoard[4].equals(GameConst.EMPTY)) {
+                            tempBoard[4] = tempPlayer.getPiece();
+                            loopCondition = 1;
+                        }
+                        break;
+                    case 6:
+                        if (tempBoard[5].equals(GameConst.EMPTY)) {
+                            tempBoard[5] = tempPlayer.getPiece();
+                            loopCondition = 1;
+                        }
+                        break;
+                    case 7:
+                        if (tempBoard[6].equals(GameConst.EMPTY)) {
+                            tempBoard[6] = tempPlayer.getPiece();
+                            loopCondition = 1;
+                        }
+                        break;
+                    case 8:
+                        if (tempBoard[7].equals(GameConst.EMPTY)) {
+                            tempBoard[7] = tempPlayer.getPiece();
+                            loopCondition = 1;
+                        }
+                        break;
+                    case 9:
+                        if (tempBoard[8].equals(GameConst.EMPTY)) {
+                            tempBoard[8] = tempPlayer.getPiece();
+                            loopCondition = 1;
+                        }
+                        break;
+                    default:
+                        return null;
+                }
+            }
         }
+
+        game.getBoard().setBoardArr(tempBoard);
+
+        return game;
+    }
+
+    public Game performEasyComputerMove(Game game) {
+        tempPlayer = getPlayerDetails(game);
+
+        game = easyComputerMove(game, tempPlayer);
+
+        countMoves = countMoves + 1;
+
+        game = performGameEnd(game, tempPlayer);
+
         return game;
     }
 
@@ -318,6 +330,32 @@ public class PlayService implements PlayServiceInterface {
         tempBoard[tempPlayer.getMove()] = tempPlayer.getPiece();
 
         game.getBoard().setBoardArr(tempBoard);
+
+        return game;
+    }
+
+    public Game performHumanMove(Game game) {
+
+        tempPlayer = getPlayerDetails(game);
+
+        game = humanMove(game, tempPlayer);
+
+        countMoves = countMoves + 1;
+
+        game = performGameEnd(game, tempPlayer);
+
+        return game;
+    }
+
+    public Game performHumanAndEasyComputerMove(Game game) {
+
+        game  = performHumanMove(game);
+
+        if(game.getStatus().equals(GameConst.OVER) || game.getStatus().equals(GameConst.TIE)) {
+            return game;
+        }
+
+        game = performEasyComputerMove(game);
 
         return game;
     }
@@ -340,56 +378,18 @@ public class PlayService implements PlayServiceInterface {
         }
     }
 
-    public Game performHumanMove(Game game) {
-
-        tempPlayer = getPlayerDetails(game);
-
-        game = humanMove(game, tempPlayer);
-
-        countMoves = countMoves + 1;
-
-        game = performGameEnd(game, tempPlayer);
-
-        return game;
-    }
-
-    public int getNumberOfMoves(String [] board) {
-        countMoves = 0;
-
-        for(int i = 0; i < 9; i=i+1) {
-            if(!board[i].equals(" ")) {
-                countMoves = countMoves + 1;
-            }
-        }
-
-        return countMoves;
-    }
-
-    public Game performHumanAndEasyComputerMove(Game game) {
-
-        game  = performHumanMove(game);
-
-        if(game.getStatus().equals(GameConst.OVER) || game.getStatus().equals(GameConst.TIE)) {
+    public Game performGameEnd(Game game, Player tempPlayer) {
+        if(checkHorizontalWin(game, tempPlayer.getPiece())
+                || checkVerticalWin(game, tempPlayer.getPiece())
+                || checkDiagonalWin(game, tempPlayer.getPiece())) {
+            game.setStatus(GameConst.OVER);
             return game;
         }
 
-        game = performEasyComputerMove(game);
-
-        return game;
-    }
-
-    public Game performHumanAndMediumComputerMove(Game game) {
-
-        countMoves = getNumberOfMoves(game.getBoard().getBoardArr());
-
-        game  = performHumanMove(game);
-
-        if(game.getStatus().equals(GameConst.OVER) || game.getStatus().equals(GameConst.TIE)) {
+        if(checkTie(game)) {
+            game.setStatus(GameConst.TIE);
             return game;
         }
-
-        game = performMediumComputerMove(game);
-
         return game;
     }
 

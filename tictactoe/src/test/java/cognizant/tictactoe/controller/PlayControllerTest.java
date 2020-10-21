@@ -28,7 +28,31 @@ class PlayControllerTest {
     }
 
     @Test
-    void getPlay_performHumanAndComputerMoveOnTheBoard() {
+    void getPlay_performHumanAndMediumComputerMoveOnTheBoard() {
+        // arrange
+        final Game expected = new Game(
+                Arrays.asList(new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
+                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
+
+        final ResponseEntity<Game> expectedResponse = new ResponseEntity<>(new Game(
+                Arrays.asList(new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
+                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0}), HttpStatus.OK);
+
+        final Game expected2 = new Game(Arrays.asList(new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
+                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
+
+        when(playService.performHumanAndMediumComputerMove(new Game(Arrays.asList(new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
+                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0}))).thenReturn(expected2);
+
+        // act
+        final ResponseEntity<Game> result = playController.performHumanAndMediumComputerMove(expected);
+
+        // assert
+        assertEquals(expectedResponse, result);
+    }
+
+    @Test
+    void getPlay_performHumanAndEasyComputerMoveOnTheBoard() {
         // arrange
         final Game expected = new Game(
                 Arrays.asList(new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
@@ -60,11 +84,11 @@ class PlayControllerTest {
 
         final Game serviceReturn = new Game(
                 Arrays.asList(new Player("HUMAN1", "X", 0), new Player("HUMAN2", "O", 0)),
-                new Board(new String[]{"X", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
+                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
 
         final ResponseEntity<Game> expectedResponse = new ResponseEntity<>(new Game(
                 Arrays.asList(new Player("HUMAN1", "X", 0), new Player("HUMAN2", "O", 0)),
-                new Board(new String[]{"X", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0}), HttpStatus.OK);
+                new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0}), HttpStatus.OK);
 
         when(playService.performHumanAndHumanMove(parameter)).thenReturn(serviceReturn);
 
