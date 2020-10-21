@@ -17,9 +17,14 @@ public class PlayController {
         this.playService = playService;
     }
 
-    @PostMapping("/human-computer")
-    public ResponseEntity<Game> performHumanAndComputerMove(@RequestBody Game game) {
-        return new ResponseEntity<>(playService.performHumanAndComputerMove(game), HttpStatus.OK);
+    @PostMapping("/human-computer-easy")
+    public ResponseEntity<Game> performHumanAndEasyComputerMove(@RequestBody Game game) {
+        return new ResponseEntity<>(playService.performHumanAndEasyComputerMove(game), HttpStatus.OK);
+    }
+
+    @PostMapping("/human-computer-medium")
+    public ResponseEntity<Game> performHumanAndMediumComputerMove(@RequestBody Game game) {
+        return new ResponseEntity<>(playService.performHumanAndMediumComputerMove(game), HttpStatus.OK);
     }
 
     @PostMapping("/human-human")

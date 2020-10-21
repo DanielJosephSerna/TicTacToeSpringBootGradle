@@ -7,9 +7,13 @@ public interface PlayServiceInterface {
 
     Game performHumanAndHumanMove(Game game);
 
-    Game computerMove(Game game, Player tempPlayer);
+    Game easyComputerMove(Game game, Player tempPlayer);
 
-    Game performComputerMove(Game game);
+    Game mediumComputerMove(Game game, Player tempPlayer);
+
+    Game performEasyComputerMove(Game game);
+
+    Game performMediumComputerMove(Game game);
 
     Game performGameEnd(Game game, Player tempPlayer);
 
@@ -19,7 +23,9 @@ public interface PlayServiceInterface {
 
     Game performHumanMove(Game game);
 
-    Game performHumanAndComputerMove(Game game);
+    Game performHumanAndEasyComputerMove(Game game);
+
+    Game performHumanAndMediumComputerMove(Game game);
 
     boolean checkHorizontalWin(Game game, String piece);
 

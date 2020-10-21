@@ -52,7 +52,7 @@ class PlayServiceTest {
                 new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
 
         // arrange
-        final Game result = playServiceUnderTest.computerMove(game, tempPlayer);
+        final Game result = playServiceUnderTest.easyComputerMove(game, tempPlayer);
 
         // assert
         assertEquals(expectedResult.getStatus(), result.getStatus());
@@ -70,7 +70,7 @@ class PlayServiceTest {
                 new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
 
         // arrange
-        final Game result = playServiceUnderTest.performComputerMove(game);
+        final Game result = playServiceUnderTest.performEasyComputerMove(game);
 
         // assert
         assertEquals(expectedResult.getStatus(), result.getStatus());
@@ -161,7 +161,7 @@ class PlayServiceTest {
                 new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
 
         // arrange
-        final Game result = playServiceUnderTest.performHumanAndComputerMove(game);
+        final Game result = playServiceUnderTest.performHumanAndEasyComputerMove(game);
 
         // assert
         assertEquals(expectedResult.getStatus(), result.getStatus());

@@ -41,11 +41,11 @@ class PlayControllerTest {
         final Game expected2 = new Game(Arrays.asList(new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
                 new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0});
 
-        when(playService.performHumanAndComputerMove(new Game(Arrays.asList(new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
+        when(playService.performHumanAndEasyComputerMove(new Game(Arrays.asList(new Player("HUMAN1", "X", 0), new Player("COMPUTER", "O", 0)),
                 new Board(new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "}), "ONGOING", new Integer[]{0, 0, 0}))).thenReturn(expected2);
 
         // act
-        final ResponseEntity<Game> result = playController.performHumanAndComputerMove(expected);
+        final ResponseEntity<Game> result = playController.performHumanAndEasyComputerMove(expected);
 
         // assert
         assertEquals(expectedResponse, result);
