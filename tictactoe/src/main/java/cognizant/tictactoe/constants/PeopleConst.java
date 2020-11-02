@@ -9,4 +9,9 @@ public class PeopleConst {
 
     public static final Character X = 'X';
     public static final Character O = 'O';
+
+    // status: tie, winner, loser, ongoing
+    public static final String TIE = "TIE";
+    public static final String ONGOING = "ONGOING";
+    public static final String OVER = "OVER";
 }

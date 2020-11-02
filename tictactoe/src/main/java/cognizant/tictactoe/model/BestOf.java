@@ -7,8 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Board {
+public class BestOf {
+    private SetUp setUp;
 
-    private String [] boardArr;
-
+    private Integer totalGamesToPlay;
+    private Integer score1;
+    private Integer score2;
 }

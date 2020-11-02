@@ -1,6 +1,5 @@
 package cognizant.tictactoe.controller;
 
-import cognizant.tictactoe.constants.GameConst;
 import cognizant.tictactoe.constants.PeopleConst;
 import cognizant.tictactoe.model.SetUp;
 import cognizant.tictactoe.service.MoveService;
