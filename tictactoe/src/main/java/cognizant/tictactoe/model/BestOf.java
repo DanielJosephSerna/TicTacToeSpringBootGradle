@@ -13,4 +13,5 @@ public class BestOf {
     private Integer totalGamesToPlay;
     private Integer score1;
     private Integer score2;
+    private String isOver;
 }

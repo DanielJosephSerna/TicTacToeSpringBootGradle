@@ -8,4 +8,6 @@ public interface BestOfServiceInterface {
 
     BestOf setUpHumanCompGame();
 
+    BestOf performBestOf(BestOf bestOf);
+
 }

@@ -14,4 +14,7 @@ public class PeopleConst {
     public static final String TIE = "TIE";
     public static final String ONGOING = "ONGOING";
     public static final String OVER = "OVER";
+
+    // isOver: final for end of best-of-games
+    public static final String FINAL = "FINAL";
 }
