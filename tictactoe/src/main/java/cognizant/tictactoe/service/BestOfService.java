@@ -37,6 +37,7 @@ public class BestOfService implements BestOfServiceInterface {
     public BestOf performBestOf(BestOf bestOf) {
         int r = bestOf.getSetUp().getWinningLine()[2] / 3;
         int c = bestOf.getSetUp().getWinningLine()[2] % 3;
+        int desiredScore = bestOf.getTotalGamesToPlay() / 2 + 1;
 
         if(bestOf.getSetUp().getStatus().equals("OVER")) {
 
@@ -48,8 +49,8 @@ public class BestOfService implements BestOfServiceInterface {
                 bestOf.setScore2(bestOf.getScore2() + 1);
             }
 
-            if(bestOf.getTotalGamesToPlay().equals(bestOf.getScore1())
-                    || bestOf.getTotalGamesToPlay().equals(bestOf.getScore2())) {
+            if( desiredScore == bestOf.getScore1()
+                    || desiredScore == bestOf.getScore2() ) {
 
                 bestOf.setIsOver("FINAL");
                 return bestOf; // end of best-of-game cycle

@@ -1,6 +1,7 @@
 package cognizant.tictactoe.controller;
 
 import cognizant.tictactoe.constants.PeopleConst;
+import cognizant.tictactoe.model.BestOf;
 import cognizant.tictactoe.model.People;
 import cognizant.tictactoe.model.SetUp;
 import cognizant.tictactoe.model.TicTacToeBoard;
@@ -14,7 +15,7 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-public class MoveControllerTest {
+class MoveControllerTest {
 
     MoveController controller;
     MoveService service;
@@ -31,17 +32,21 @@ public class MoveControllerTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{' ', ' ', ' '},{' ', ' ', ' '},{' ', ' ', ' '}}, 0);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 0, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 0, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0, 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', ' ', ' '},{' ', ' ', ' '},{' ', ' ', ' '}}, 0);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 1, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 1, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         when(service.performMove(param)).thenReturn(expected);
 
         // act
-        SetUp actual = controller.performMove(param).getBody();
+        BestOf actual = controller.performMove(param).getBody();
 
         // assert
         Mockito.verify(service).performMove(param);

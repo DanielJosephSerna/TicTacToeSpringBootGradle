@@ -1,6 +1,7 @@
 package cognizant.tictactoe.service;
 
 import cognizant.tictactoe.constants.PeopleConst;
+import cognizant.tictactoe.model.BestOf;
 import cognizant.tictactoe.model.People;
 import cognizant.tictactoe.model.SetUp;
 import cognizant.tictactoe.model.TicTacToeBoard;
@@ -11,7 +12,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MoveServiceTest {
+class MoveServiceTest {
 
     MoveService service;
 
@@ -24,15 +25,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{' ', ' ', ' '},{' ', ' ', ' '},{' ', ' ', ' '}}, 0);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 0, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 0, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', ' ', ' '},{' ', ' ', ' '},{' ', ' ', ' '}}, 0);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 1, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 1, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -44,15 +49,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'X', ' ', ' '},{' ', ' ', ' '},{' ', ' ', ' '}}, 1);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 1, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 1, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', 'O', ' '},{' ', ' ', ' '},{' ', ' ', ' '}}, 1);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 2, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 2, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -64,15 +73,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'X', ' ', ' '},{' ', ' ', ' '},{' ', ' ', ' '}}, 0);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 1, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 1, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', ' ', ' '},{' ', 'O', ' '},{' ', ' ', ' '}}, 0);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 2, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 2, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -84,15 +97,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{' ', ' ', ' '},{' ', 'X', ' '},{' ', ' ', ' '}}, 4);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 1, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 1, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', ' ', ' '},{' ', 'X', ' '},{' ', ' ', ' '}}, 4);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 2, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 2, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -104,15 +121,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'X', 'O', ' '},{' ', ' ', ' '},{' ', ' ', ' '}}, 3);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 2, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 2, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', 'O', ' '},{'X', ' ', ' '},{' ', ' ', ' '}}, 3);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -124,19 +145,23 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'X', 'O', 'O'},{'X', ' ', ' '},{' ', ' ', ' '}}, 7);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', 'O', 'O'},{'X', ' ', ' '},{' ', 'X', ' '}}, 7);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 5, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 5, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
-        assertEquals(expected.getStatus(), actual.getStatus());
+        assertEquals(expected.getSetUp().getStatus(), actual.getSetUp().getStatus());
     }
 
     @Test
@@ -145,19 +170,23 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'X', 'O', ' '},{'X', 'O', ' '},{' ', 'X', ' '}}, 8);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 5, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 5, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', 'O', ' '},{'X', 'O', ' '},{' ', 'X', 'O'}}, 8);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 6, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 6, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
-        assertEquals(expected.getStatus(), actual.getStatus());
+        assertEquals(expected.getSetUp().getStatus(), actual.getSetUp().getStatus());
     }
 
     @Test
@@ -166,21 +195,23 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'X', 'O', ' '},{'X', 'O', ' '},{' ', 'X', ' '}}, 8);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 5, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 5, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
 /*
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', 'O', ' '},{'X', 'O', ' '},{' ', 'X', 'O'}}, 8);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 6, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 6, new Integer[]{0, 0, 0});
 */
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(param, actual);
-        assertEquals(param.getStatus(), actual.getStatus());
+        assertEquals(param.getSetUp().getStatus(), actual.getSetUp().getStatus());
     }
 
     @Test
@@ -189,19 +220,23 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'X', 'O', 'O'},{'X', ' ', ' '},{' ', ' ', ' '}}, 6);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', 'O', 'O'},{'X', ' ', ' '},{'X', ' ', ' '}}, 6);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "OVER", 5, new Integer[]{0, 3, 6});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "OVER", 5, new Integer[]{0, 3, 6});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
-        assertEquals(expected.getStatus(), actual.getStatus());
+        assertEquals(expected.getSetUp().getStatus(), actual.getSetUp().getStatus());
     }
 
     @Test
@@ -210,19 +245,23 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'X', 'X', ' '},{'O', 'O', ' '},{' ', ' ', ' '}}, 2);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', 'X', 'X'},{'O', 'O', ' '},{' ', ' ', ' '}}, 2);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "OVER", 5, new Integer[]{0, 1, 2});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "OVER", 5, new Integer[]{0, 1, 2});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
-        assertEquals(expected.getStatus(), actual.getStatus());
+        assertEquals(expected.getSetUp().getStatus(), actual.getSetUp().getStatus());
     }
 
     @Test
@@ -231,19 +270,23 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'X', ' ', ' '},{'O', 'X', 'O'},{' ', ' ', ' '}}, 8);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', ' ', ' '},{'O', 'X', 'O'},{' ', ' ', 'X'}}, 8);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "OVER", 5, new Integer[]{0, 4, 8});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "OVER", 5, new Integer[]{0, 4, 8});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
-        assertEquals(expected.getStatus(), actual.getStatus());
+        assertEquals(expected.getSetUp().getStatus(), actual.getSetUp().getStatus());
     }
 
     @Test
@@ -252,19 +295,23 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'O', ' ', 'X'},{'O', 'X', ' '},{' ', ' ', ' '}}, 6);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', ' ', 'X'},{'O', 'X', ' '},{'X', ' ', ' '}}, 6);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "OVER", 5, new Integer[]{2, 4, 6});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "OVER", 5, new Integer[]{2, 4, 6});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
-        assertEquals(expected.getStatus(), actual.getStatus());
+        assertEquals(expected.getSetUp().getStatus(), actual.getSetUp().getStatus());
     }
 
     @Test
@@ -273,19 +320,23 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'O', 'O', 'X'}, {'X', 'X', 'O'}, {' ', 'X', ' '}}, 6);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 7, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 7, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', 'O', 'X'}, {'X', 'X', 'O'}, {'O', 'X', ' '}}, 6);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 8, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 8, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
-        assertEquals(expected.getStatus(), actual.getStatus());
+        assertEquals(expected.getSetUp().getStatus(), actual.getSetUp().getStatus());
     }
 
     @Test
@@ -294,19 +345,23 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'O', 'O', 'X'}, {'X', 'X', 'O'}, {'O', 'X', ' '}}, 8);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 8, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 8, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', 'O', 'X'}, {'X', 'X', 'O'}, {'O', 'X', 'X'}}, 8);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "TIE", 9, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "TIE", 9, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
-        assertEquals(expected.getStatus(), actual.getStatus());
+        assertEquals(expected.getSetUp().getStatus(), actual.getSetUp().getStatus());
     }
 
     @Test
@@ -316,14 +371,16 @@ public class MoveServiceTest {
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', 'O', 'O'},{'X', ' ', ' '},{'X', ' ', ' '}}, 6);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "OVER", 5, new Integer[]{0, 3, 6});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "OVER", 5, new Integer[]{0, 3, 6});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.checkVerticalWin(expected, temp);
+        BestOf actual = service.checkVerticalWin(expected, temp);
 
         // assert
         assertEquals(expected, actual);
-        assertEquals(expected.getStatus(), actual.getStatus());
+        assertEquals(expected.getSetUp().getStatus(), actual.getSetUp().getStatus());
     }
 
     @Test
@@ -334,14 +391,16 @@ public class MoveServiceTest {
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', 'X', 'X'},{'O', 'O', ' '},{' ', ' ', ' '}}, 2);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "OVER", 5, new Integer[]{0, 1, 2});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "OVER", 5, new Integer[]{0, 1, 2});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.checkHorizontalWin(expected, temp);
+        BestOf actual = service.checkHorizontalWin(expected, temp);
 
         // assert
         assertEquals(expected, actual);
-        assertEquals(expected.getStatus(), actual.getStatus());
+        assertEquals(expected.getSetUp().getStatus(), actual.getSetUp().getStatus());
     }
 
     @Test
@@ -351,14 +410,16 @@ public class MoveServiceTest {
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', ' ', ' '},{'O', 'X', 'O'},{' ', ' ', 'X'}}, 8);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "OVER", 5, new Integer[]{0, 4, 8});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "OVER", 5, new Integer[]{0, 4, 8});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.checkDiagonalWinConditionOne(expected, temp);
+        BestOf actual = service.checkDiagonalWinConditionOne(expected, temp);
 
         // assert
         assertEquals(expected, actual);
-        assertEquals(expected.getStatus(), actual.getStatus());
+        assertEquals(expected.getSetUp().getStatus(), actual.getSetUp().getStatus());
     }
 
     @Test
@@ -368,14 +429,16 @@ public class MoveServiceTest {
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', ' ', 'X'},{'O', 'X', ' '},{'X', ' ', ' '}}, 6);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "OVER", 5, new Integer[]{2, 4, 6});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "OVER", 5, new Integer[]{2, 4, 6});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.checkDiagonalWinConditionOne(expected, temp);
+        BestOf actual = service.checkDiagonalWinConditionOne(expected, temp);
 
         // assert
         assertEquals(expected, actual);
-        assertEquals(expected.getStatus(), actual.getStatus());
+        assertEquals(expected.getSetUp().getStatus(), actual.getSetUp().getStatus());
     }
 
     @Test
@@ -384,19 +447,23 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'O', 'O', 'X'}, {'X', 'X', 'O'}, {'O', 'X', ' '}}, 7);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 8, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 8, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', 'O', 'X'}, {'X', 'X', 'O'}, {'O', 'X', ' '}}, 7);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 8, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 8, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.checkTie(expected);
+        BestOf actual = service.checkTie(expected);
 
         // assert
         assertEquals(expected, actual);
-        assertEquals(expected.getStatus(), actual.getStatus());
+        assertEquals(expected.getSetUp().getStatus(), actual.getSetUp().getStatus());
     }
 
     @Test
@@ -405,19 +472,23 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'O', 'O', 'X'}, {'X', 'X', 'O'}, {'O', 'X', 'X'}}, 8);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 9, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 9, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', 'O', 'X'}, {'X', 'X', 'O'}, {'O', 'X', 'X'}}, 8);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "TIE", 9, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "TIE", 9, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.checkTie(expected);
+        BestOf actual = service.checkTie(expected);
 
         // assert
         assertEquals(expected, actual);
-        assertEquals(expected.getStatus(), actual.getStatus());
+        assertEquals(expected.getSetUp().getStatus(), actual.getSetUp().getStatus());
     }
 
     /*******************************************************************************/
@@ -428,15 +499,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'O', ' ', ' '},{' ', 'X', ' '},{'X', ' ', ' '}}, 4);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', ' ', 'O'},{' ', 'X', ' '},{'X', ' ', ' '}}, 4);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -448,15 +523,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'O', ' ', 'X'},{' ', ' ', ' '},{'X', ' ', ' '}}, 2);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', ' ', 'X'},{' ', 'O', ' '},{'X', ' ', ' '}}, 2);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -468,15 +547,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'O', ' ', 'X'},{' ', 'X', ' '},{' ', ' ', ' '}}, 2);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', ' ', 'X'},{' ', 'X', ' '},{'O', ' ', ' '}}, 2);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -488,15 +571,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'X', ' ', 'O'},{' ', 'X', ' '},{' ', ' ', ' '}}, 4);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', ' ', 'O'},{' ', 'X', ' '},{' ', ' ', 'O'}}, 4);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -508,15 +595,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'X', ' ', 'O'},{' ', ' ', ' '},{' ', ' ', 'X'}}, 2);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', ' ', 'O'},{' ', 'O', ' '},{' ', ' ', 'X'}}, 2);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -528,15 +619,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{' ', ' ', 'O'},{' ', 'X', ' '},{' ', ' ', 'X'}}, 4);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', ' ', 'O'},{' ', 'X', ' '},{' ', ' ', 'X'}}, 4);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -548,15 +643,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{' ', ' ', ' '},{' ', 'O', 'X'},{' ', ' ', 'X'}}, 8);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{' ', ' ', 'O'},{' ', 'O', 'X'},{' ', ' ', 'X'}}, 8);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -568,15 +667,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{' ', ' ', 'X'},{' ', 'O', ' '},{' ', ' ', 'X'}}, 8);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{' ', ' ', 'X'},{' ', 'O', 'O'},{' ', ' ', 'X'}}, 8);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -588,15 +691,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{' ', ' ', 'X'},{' ', 'O', 'X'},{' ', ' ', ' '}}, 2);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{' ', ' ', 'X'},{' ', 'O', 'X'},{' ', ' ', 'O'}}, 2);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -608,15 +715,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'O', 'X', ' '},{' ', 'X', ' '},{' ', ' ', ' '}}, 1);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', 'X', ' '},{' ', 'X', ' '},{' ', 'O', ' '}}, 1);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -628,15 +739,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'O', 'X', ' '},{' ', ' ', ' '},{' ', 'X', ' '}}, 1);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', 'X', ' '},{' ', 'O', ' '},{' ', 'X', ' '}}, 1);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -648,15 +763,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'O', ' ', ' '},{' ', 'X', ' '},{' ', 'X', ' '}}, 4);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', 'O', ' '},{' ', 'X', ' '},{' ', 'X', ' '}}, 4);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -668,15 +787,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'X', ' ', ' '},{'X', 'O', ' '},{' ', ' ', ' '}}, 0);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', ' ', ' '},{'X', 'O', ' '},{'O', ' ', ' '}}, 0);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -688,15 +811,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'X', ' ', ' '},{' ', 'O', ' '},{'X', ' ', ' '}}, 0);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', ' ', ' '},{'O', 'O', ' '},{'X', ' ', ' '}}, 0);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -708,15 +835,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{' ', ' ', ' '},{'X', 'O', ' '},{'X', ' ', ' '}}, 0);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', ' ', ' '},{'X', 'O', ' '},{'X', ' ', ' '}}, 0);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -728,15 +859,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{' ', ' ', ' '},{' ', 'O', ' '},{'X', 'X', ' '}}, 6);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{' ', ' ', ' '},{' ', 'O', ' '},{'X', 'X', 'O'}}, 6);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -748,15 +883,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{' ', ' ', ' '},{' ', 'O', ' '},{'X', ' ', 'X'}}, 6);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{' ', ' ', ' '},{' ', 'O', ' '},{'X', 'O', 'X'}}, 6);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -768,15 +907,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{' ', ' ', ' '},{' ', 'O', ' '},{' ', 'X', 'X'}}, 8);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{' ', ' ', ' '},{' ', 'O', ' '},{'O', 'X', 'X'}}, 8);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -788,15 +931,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'O', ' ', ' '},{'X', 'X', ' '},{' ', ' ', ' '}}, 3);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', ' ', ' '},{'X', 'X', 'O'},{' ', ' ', ' '}}, 3);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -808,15 +955,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'O', ' ', ' '},{'X', ' ', 'X'},{' ', ' ', ' '}}, 3);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', ' ', ' '},{'X', 'O', 'X'},{' ', ' ', ' '}}, 3);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -828,15 +979,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'O', ' ', ' '},{' ', 'X', 'X'},{' ', ' ', ' '}}, 4);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', ' ', ' '},{'O', 'X', 'X'},{' ', ' ', ' '}}, 4);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -848,15 +1003,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'X', 'X', ' '},{' ', 'O', ' '},{' ', ' ', ' '}}, 0);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', 'X', 'O'},{' ', 'O', ' '},{' ', ' ', ' '}}, 0);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -868,15 +1027,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{'X', ' ', 'X'},{' ', 'O', ' '},{' ', ' ', ' '}}, 0);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0 , 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', 'O', 'X'},{' ', 'O', ' '},{' ', ' ', ' '}}, 0);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -888,15 +1051,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{' ', 'X', 'X'},{' ', 'O', ' '},{' ', ' ', ' '}}, 1);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0, 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', 'X', 'X'},{' ', 'O', ' '},{' ', ' ', ' '}}, 1);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);
@@ -908,15 +1075,19 @@ public class MoveServiceTest {
         People playerOneParam = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoParam = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardParam = new TicTacToeBoard(new Character[][]{{' ', ' ', 'X'},{' ', 'O', ' '},{'X', ' ', ' '}}, 2);
-        SetUp param = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+        SetUp setUp = new SetUp(Arrays.asList(playerOneParam, playerTwoParam), boardParam, "ONGOING", 3, new Integer[]{0, 0, 0});
+
+        BestOf param = new BestOf(setUp, 1, 0, 0, "ONGOING");
 
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         People playerTwoExpected = new People(PeopleConst.COMPUTER, PeopleConst.O);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'O', ' ', 'X'},{' ', 'O', ' '},{'X', ' ', ' '}}, 2);
-        SetUp expected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+        SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "ONGOING", 4, new Integer[]{0, 0, 0});
+
+        BestOf expected = new BestOf(setUpExpected, 1, 0, 0, "ONGOING");
 
         // arrange
-        SetUp actual = service.performMove(param);
+        BestOf actual = service.performMove(param);
 
         // assert
         assertEquals(expected, actual);

@@ -1,7 +1,7 @@
 package cognizant.tictactoe.controller;
 
 import cognizant.tictactoe.constants.PeopleConst;
-import cognizant.tictactoe.model.SetUp;
+import cognizant.tictactoe.model.BestOf;
 import cognizant.tictactoe.service.MoveService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,22 +17,22 @@ public class MoveController {
     public MoveController(MoveService moveService) { this.moveService = moveService; }
 
     @PostMapping("/place-piece")
-    public ResponseEntity<SetUp> performMove(@RequestBody SetUp setUp) {
+    public ResponseEntity<BestOf> performMove(@RequestBody BestOf bestOf) {
 
-        if(setUp.getPeopleList().get(1).getType().equals(PeopleConst.COMPUTER)) {
+        if(bestOf.getSetUp().getPeopleList().get(1).getType().equals(PeopleConst.COMPUTER)) {
 
-            setUp = moveService.performMove(setUp);
+            bestOf = moveService.performMove(bestOf);
 
-            if(setUp.getStatus().equals("ONGOING")) {
+            if(bestOf.getSetUp().getStatus().equals("ONGOING")) {
 
-                setUp = moveService.performMove(setUp);
+                bestOf = moveService.performMove(bestOf);
             }
 
         } else {
-            setUp = moveService.performMove(setUp);
+            bestOf = moveService.performMove(bestOf);
         }
 
-        return new ResponseEntity<>(setUp, HttpStatus.OK);
+        return new ResponseEntity<>(bestOf, HttpStatus.OK);
     }
 
 }

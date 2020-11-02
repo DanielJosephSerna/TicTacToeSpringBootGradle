@@ -1,11 +1,11 @@
 package cognizant.tictactoe.service;
 
-import cognizant.tictactoe.model.SetUp;
+import cognizant.tictactoe.model.BestOf;
 
 public interface SetUpServiceInterface {
 
-    SetUp setUpHumanCompGame();
+    BestOf setUpHumanCompGame();
 
-    SetUp setUpHumanHumanGame();
+    BestOf setUpHumanHumanGame();
 
 }

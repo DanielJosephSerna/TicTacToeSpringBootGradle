@@ -1,25 +1,24 @@
 package cognizant.tictactoe.service;
 
-import cognizant.tictactoe.model.SetUp;
+import cognizant.tictactoe.model.BestOf;
 
 public interface MoveServiceInterface {
 
-    SetUp performMove(SetUp setUp);
+    BestOf performMove(BestOf bestOf);
 
+    BestOf placePieceOnBoard(BestOf bestOf, int r, int c);
 
-    SetUp placePieceOnBoard(SetUp setUp, int r, int c);
+    BestOf computerMove(BestOf bestOf);
 
-    SetUp computerMove(SetUp setUp);
+    BestOf isGameOver(BestOf bestOf);
 
-    SetUp isGameOver(SetUp setUp);
+    BestOf checkHorizontalWin(BestOf bestOf, Character tempPiece);
 
-    SetUp checkHorizontalWin(SetUp setUp, Character tempPiece);
+    BestOf checkVerticalWin(BestOf bestOf, Character tempPiece);
 
-    SetUp checkVerticalWin(SetUp setUp, Character tempPiece);
+    BestOf checkDiagonalWinConditionOne(BestOf bestOf, Character tempPiece);
 
-    SetUp checkDiagonalWinConditionOne(SetUp setUp, Character tempPiece);
+    BestOf checkDiagonalWinConditionTwo(BestOf bestOf, Character tempPiece);
 
-    SetUp checkDiagonalWinConditionTwo(SetUp setUp, Character tempPiece);
-
-    SetUp checkTie(SetUp setUp);
+    BestOf checkTie(BestOf bestOf);
 }

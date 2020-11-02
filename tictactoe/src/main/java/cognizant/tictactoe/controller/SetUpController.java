@@ -1,6 +1,6 @@
 package cognizant.tictactoe.controller;
 
-import cognizant.tictactoe.model.SetUp;
+import cognizant.tictactoe.model.BestOf;
 import cognizant.tictactoe.service.SetUpService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +19,12 @@ public class SetUpController {
     public SetUpController(SetUpService setUpService) { this.setUpService = setUpService; }
 
     @GetMapping("/human-computer")
-    public ResponseEntity<SetUp> setUpHumanCompGame() {
+    public ResponseEntity<BestOf> setUpHumanCompGame() {
         return new ResponseEntity<>(setUpService.setUpHumanCompGame(), HttpStatus.OK);
     }
 
     @GetMapping("/human-human")
-    public ResponseEntity<SetUp> setUpHumanHumanGame() {
+    public ResponseEntity<BestOf> setUpHumanHumanGame() {
         return new ResponseEntity<>(setUpService.setUpHumanHumanGame(), HttpStatus.OK);
     }
 }

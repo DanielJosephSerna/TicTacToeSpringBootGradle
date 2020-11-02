@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BestOfServiceTest {
+class BestOfServiceTest {
 
     BestOfService service;
 
@@ -161,13 +161,13 @@ public class BestOfServiceTest {
         People playerOne = new People(PeopleConst.HUMAN1, PeopleConst.X);
         TicTacToeBoard board = new TicTacToeBoard(new Character[][]{{'X', 'X', 'X'},{'O', 'O', ' '},{' ', ' ', ' '}}, 2);
         SetUp setUp = new SetUp(Arrays.asList(playerOne, playerTwo), board, "OVER", 5, new Integer[]{0, 1, 2});
-        BestOf param = new BestOf(setUp, 1, 0, 0, "ONGOING");
+        BestOf param = new BestOf(setUp, 3, 1, 0, "ONGOING");
 
         People playerTwoExpected = new People(PeopleConst.HUMAN2, PeopleConst.O);
         People playerOneExpected = new People(PeopleConst.HUMAN1, PeopleConst.X);
         TicTacToeBoard boardExpected = new TicTacToeBoard(new Character[][]{{'X', 'X', 'X'},{'O', 'O', ' '},{' ', ' ', ' '}}, 2);
         SetUp setUpExpected = new SetUp(Arrays.asList(playerOneExpected, playerTwoExpected), boardExpected, "OVER", 5, new Integer[]{0, 1, 2});
-        BestOf expected = new BestOf(setUpExpected, 1, 1, 0, "FINAL");
+        BestOf expected = new BestOf(setUpExpected, 3, 2, 0, "FINAL");
 
         // act
 
