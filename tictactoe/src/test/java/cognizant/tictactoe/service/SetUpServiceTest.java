@@ -1,0 +1,48 @@
+package cognizant.tictactoe.service;
+
+import cognizant.tictactoe.constants.PeopleConst;
+import cognizant.tictactoe.model.People;
+import cognizant.tictactoe.model.SetUp;
+import cognizant.tictactoe.model.TicTacToeBoard;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class SetUpServiceTest {
+
+    SetUpService service;
+
+    @BeforeEach
+    public void setUp() { service = new SetUpService(); }
+
+    @Test
+    void setUpHumanComp_ReturnsNewSetUpModel() {
+        // arrange
+        People playerZero = new People(PeopleConst.COMPUTER, PeopleConst.O);
+        People playerOne = new People(PeopleConst.HUMAN1, PeopleConst.X);
+        TicTacToeBoard board = new TicTacToeBoard(new Character[][]{{' ', ' ', ' '},{' ', ' ', ' '},{' ', ' ', ' '}}, 0);
+        SetUp expected = new SetUp(Arrays.asList(playerOne, playerZero), board, "ONGOING", 0, new Integer[]{0, 0, 0});
+
+        // act
+
+        // assert
+        assertEquals(expected, service.setUpHumanCompGame());
+    }
+
+    @Test
+    void setUpHumanHuman_ReturnsNewSetUpModel() {
+        // arrange
+        People playerTwo = new People(PeopleConst.HUMAN2, PeopleConst.O);
+        People playerOne = new People(PeopleConst.HUMAN1, PeopleConst.X);
+        TicTacToeBoard board = new TicTacToeBoard(new Character[][]{{' ', ' ', ' '},{' ', ' ', ' '},{' ', ' ', ' '}}, 0);
+        SetUp expected = new SetUp(Arrays.asList(playerOne, playerTwo), board, "ONGOING", 0, new Integer[]{0, 0, 0});
+
+        // act
+
+        // assert
+        assertEquals(expected, service.setUpHumanHumanGame());
+    }
+}

@@ -1,0 +1,38 @@
+{
+  "peopleList": [
+    {
+      "type": "HUMAN1",
+      "piece": "X"
+    },
+    {
+      "type": "HUMAN2",
+      "piece": "O"
+    }
+  ],
+  "boardArr": {
+    "boardArr": [
+      [
+        " ",
+        " ",
+        " "
+      ],
+      [
+        " ",
+        " ",
+        " "
+      ],
+      [
+        " ",
+        " ",
+        " "
+      ]
+    ]
+  },
+  "status": "ONGOING",
+  "countMoves": 0,
+  "winningLine": [
+    0,
+    0,
+    0
+  ]
+}
