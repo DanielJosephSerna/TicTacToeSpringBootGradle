@@ -9,4 +9,5 @@ public class GameConst {
 
     // board
     public static final String EMPTY = " ";
+    public static final Character SPACE = ' ';
 }
