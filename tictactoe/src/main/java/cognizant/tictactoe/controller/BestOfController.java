@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/best-of")
+@CrossOrigin
 public class BestOfController {
 
     private final BestOfService bestOfService;
@@ -24,7 +25,7 @@ public class BestOfController {
         return new ResponseEntity<>(bestOfService.setUpHumanCompGame(), HttpStatus.OK);
     }
 
-    @PostMapping("/human")
+    @PostMapping("/check")
     public ResponseEntity<BestOf> performBestOf(@RequestBody BestOf bestOf) {
         return new ResponseEntity<>(bestOfService.performBestOf(bestOf), HttpStatus.OK);
     }
